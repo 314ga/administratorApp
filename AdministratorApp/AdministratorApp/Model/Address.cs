@@ -12,5 +12,12 @@ namespace AdministratorApp.Model
         public string city { get; set; }
         public string zipCode { get; set; }
         public string country { get; set; }
+
+        public override string ToString()
+        {
+            return street + ", " + zipCode + " " + city + " " + country;
     }
+    }
+
+   
 }

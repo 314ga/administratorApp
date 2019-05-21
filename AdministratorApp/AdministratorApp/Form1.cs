@@ -12,6 +12,8 @@ namespace AdministratorApp
 {
     public partial class form1 : Form
     {
+        ListAdapter listAdapter = new ListAdapter();
+        OrderList orderList;
         public form1()
         {
             InitializeComponent();
@@ -23,9 +25,54 @@ namespace AdministratorApp
 
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+ 
+        private void tabControl1_Enter(object sender, EventArgs e)
         {
-      
+            //TODO: get all orders from database
+            TestClass testClass = new TestClass();
+            orderList = testClass.getFakeOrders();
+            updateListView();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO: get all orders from database
+            TestClass testClass = new TestClass();
+            orderList = testClass.getFakeOrders();
+            updateListView();
+        }
+
+        private void updateListView()
+        {
+            listView1.Items.Clear();
+            List<string[]> orders = listAdapter.GetAllOrdersList(orderList);
+            int rowNumber = 0;
+            foreach (string[] order in orders)
+            {
+                listView1.Items.Add("" + rowNumber).SubItems.AddRange(order);
+                rowNumber++;
+            }
+        }
+
+        private void assignedRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO: get assigned orders from database
+            TestClass testClass = new TestClass();
+            orderList = testClass.getFakeOrders();
+            updateListView();
+        }
+
+        private void unassignedRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            //TODO: get unassigned orders from database
+            TestClass testClass = new TestClass();
+            orderList = testClass.getFakeOrders();
+            updateListView();
         }
     }
 }
