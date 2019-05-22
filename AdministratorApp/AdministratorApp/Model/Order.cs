@@ -24,5 +24,6 @@ namespace AdministratorApp
         public bool awaitingPickUp { get; set; }
         public bool pickedUp { get; set; }
         public bool delivered { get; set; }
+        public bool lateDelivery { get; set; }
     }
 }
