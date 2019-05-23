@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdministratorApp.Service;
 
 namespace AdministratorApp
 {
@@ -16,7 +18,9 @@ namespace AdministratorApp
         [STAThread]
         static void Main()
         {
-            TcpClient client = new TcpClient("localhost", 4400);
+            AdministratorService client = new AdministratorService();
+            client.GetOrdersList();
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new form1());

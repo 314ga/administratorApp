@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace AdministratorApp.Model
 {
-    class SocketRequest
+    [Serializable]
+    public class SocketRequest
     {
-        private ACTION action;
-        private object obj;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ACTION action;
+        public object obj;
 
-    public SocketRequest(ACTION action, Object obj)
+   /*public SocketRequest(ACTION action, Object obj)
         {
             this.action = action;
             this.obj = obj;
-        }
+        }*/
 
         public enum ACTION
         {
