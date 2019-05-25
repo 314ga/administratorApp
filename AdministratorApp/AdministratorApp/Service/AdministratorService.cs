@@ -16,34 +16,40 @@ namespace AdministratorApp.Service
 {
     public class AdministratorService
     {
-        private int port = 4400;
-        IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("192.168.1.145"), 4400);
+        private int Port = 4400;
+        IPEndPoint serverAddress;
+        Socket clientSocket;
 
-        Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        SocketRequest request = new SocketRequest();
-        JsonSerializer jsonSerializer = new JsonSerializer();
+        SocketRequest Request = new SocketRequest();
+        JsonSerializer JsonSerializer = new JsonSerializer();
 
+        public void Setup()
+        {
+           serverAddress = new IPEndPoint(IPAddress.Parse(GetLocalIPAddress()), Port);
+           clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+           clientSocket.Connect(serverAddress);
+        }
 
         public void GetOrdersList()
         {
-            clientSocket.Connect(serverAddress);
+            //fetch request
+            Request.action = SocketRequest.ACTION.GET_ORDERS;
 
-            
-            request.action = SocketRequest.ACTION.GET_ORDERS;
+            //transform to JSON
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
 
-            
-            string requestAsJSON = JsonConvert.SerializeObject(request);
+            //socket connection
+            Setup();
 
-            // Sending
-            int toSendLen = Encoding.ASCII.GetByteCount(requestAsJSON);
-            byte[] toSendBytes = Encoding.ASCII.GetBytes(requestAsJSON);
-            byte[] toSendLenBytes = BitConverter.GetBytes(toSendLen);
-            clientSocket.Send(toSendLenBytes);
-            clientSocket.Send(toSendBytes);
+            //send request 
+            SendRequestMessage(requestAsJSON);
 
+            //read resultset
+     
+        }
 
-            /*
-            // Receiving
+        public String ReadResultset()
+        {
             byte[] rcvLenBytes = new byte[4];
             clientSocket.Receive(rcvLenBytes);
             int rcvLen = BitConverter.ToInt32(rcvLenBytes, 0);
@@ -51,12 +57,33 @@ namespace AdministratorApp.Service
             clientSocket.Receive(rcvBytes);
             string rcv = Encoding.ASCII.GetString(rcvBytes);
 
-            Console.WriteLine("Client received: " + rcv);
-            Console.ReadLine();*/
+            return rcv;
 
-            
-
+            //missing JSON deserializing
         }
+
+        public void SendRequestMessage(String requestMessage)
+        {
+            int toSendLen = Encoding.ASCII.GetByteCount(requestMessage);
+            byte[] toSendBytes = Encoding.ASCII.GetBytes(requestMessage);
+            byte[] toSendLenBytes = BitConverter.GetBytes(toSendLen);
+            clientSocket.Send(toSendLenBytes);
+            clientSocket.Send(toSendBytes);
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
     }
 }
 
