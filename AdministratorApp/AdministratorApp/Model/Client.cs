@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdministratorApp.Model
 {
-   public abstract class AbstractClient
+   public class AbstractClient
     {
         public String clientId { get; set; }
         public Address address { get; set; }
