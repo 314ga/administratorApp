@@ -25,21 +25,21 @@ namespace AdministratorApp.Service
 
         public void Setup()
         {
-           serverAddress = new IPEndPoint(IPAddress.Parse(GetLocalIPAddress()), Port);
-           clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-           clientSocket.Connect(serverAddress);
+            serverAddress = new IPEndPoint(IPAddress.Parse(GetLocalIPAddress()), Port);
+            clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            clientSocket.Connect(serverAddress);
         }
 
         public OrderList GetOrdersList()
         {
-            //fetch request
+            //socket connection
+            Setup();
+
+            //create request
             Request.action = SocketRequest.ACTION.GET_ORDERS;
 
             //seriliazing to JSON
             string requestAsJSON = JsonConvert.SerializeObject(Request);
-
-            //socket connection
-            Setup();
 
             //send request 
             SendRequestMessage(requestAsJSON);
@@ -52,12 +52,44 @@ namespace AdministratorApp.Service
             //deseriliasing 
             obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
 
-            //clientSocket.Close(); 
+            clientSocket.Close(); 
 
             return obj;
+        }
 
+        public OrderList GetAssignedOrders()
+        {
+            Setup();
+
+            Request.action = SocketRequest.ACTION.GET_ASSIGNED_ORDERS;
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
             
+            SendRequestMessage(requestAsJSON);
+            string JsonString = ReadResultset();
 
+            OrderList obj = new OrderList();
+            obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
+
+            clientSocket.Close();
+
+            return obj;
+        }
+        public OrderList GetUnassignedOrders()
+        {
+            Setup();
+
+            Request.action = SocketRequest.ACTION.GET_UNASSIGNED_ORDERS;
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            SendRequestMessage(requestAsJSON);
+            string JsonString = ReadResultset();
+
+            OrderList obj = new OrderList();
+            obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
+
+            clientSocket.Close();
+
+            return obj;
         }
 
         public String ReadResultset()

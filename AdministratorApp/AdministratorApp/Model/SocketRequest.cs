@@ -24,6 +24,8 @@ namespace AdministratorApp.Model
         public enum ACTION
         {
             GET_ORDERS,
+            GET_ASSIGNED_ORDERS,
+            GET_UNASSIGNED_ORDERS,
             GET_ORDER_BY_ID,
             UPDATE_ORDER,
             DELETE_ORDER,

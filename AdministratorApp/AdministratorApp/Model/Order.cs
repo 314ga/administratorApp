@@ -21,9 +21,11 @@ namespace AdministratorApp
         public float weight { get; set; }
         public string size { get; set; }
         public float price { get; set; }
+        public string responsibleCompany { get; set; }
         public bool awaitingPickUp { get; set; }
         public bool pickedUp { get; set; }
         public bool delivered { get; set; }
         public bool lateDelivery { get; set; }
+        public double distance { get; set; }
     }
 }

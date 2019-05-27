@@ -16,6 +16,7 @@ namespace AdministratorApp
     {
         ListAdapter listAdapter = new ListAdapter();
         OrderList orderList;
+        AdministratorService client = new AdministratorService();
         public form1()
         {
             InitializeComponent();
@@ -30,8 +31,8 @@ namespace AdministratorApp
  
         private void tabControl1_Enter(object sender, EventArgs e)
         {
-            //TODO: get all orders from database
-            AdministratorService client = new AdministratorService();
+            //get all orders from database
+            
             orderList = client.GetOrdersList();
             updateListView();
         }
@@ -43,8 +44,8 @@ namespace AdministratorApp
 
         private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            //TODO: get all orders from database
-            AdministratorService client = new AdministratorService();
+            // get all orders from database
+            
             orderList = client.GetOrdersList();
             updateListView();
         }
@@ -64,8 +65,8 @@ namespace AdministratorApp
         private void assignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: get assigned orders from database
-            AdministratorService client = new AdministratorService();
-            orderList = client.GetOrdersList();
+            
+            orderList = client.GetAssignedOrders();
 
             updateListView();
         }
@@ -73,8 +74,8 @@ namespace AdministratorApp
         private void unassignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: get unassigned orders from database
-            AdministratorService client = new AdministratorService();
-            orderList = client.GetOrdersList();
+           
+            orderList = client.GetUnassignedOrders();
             updateListView();
         }
     }

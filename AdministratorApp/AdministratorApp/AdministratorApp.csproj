@@ -56,6 +56,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ListAdapter.cs" />
+    <Compile Include="Model\AbstractClient.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderList.cs" />
