@@ -11,7 +11,7 @@ namespace AdministratorApp
         public List<string[]> GetAllOrdersList(OrderList orderList)
         {
             List<string[]> orders = new List<string[]>();
-            foreach (Order order in orderList.Orders)
+            foreach (Order order in orderList.orders)
             {
                 string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(), order.pickUpDeadline,
                     order.dropOffAddress.ToString(), order.dropOffDeadline, order.contentDescription, order.weight.ToString(),
@@ -25,7 +25,7 @@ namespace AdministratorApp
         public List<string[]> GetAssignedOrderList(OrderList orderList)
         { 
             List<string[]> orders = new List<string[]>();
-            foreach (Order order in orderList.Orders)
+            foreach (Order order in orderList.orders)
             {
                 string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(), order.pickUpDeadline,
                     order.dropOffAddress.ToString(), order.dropOffDeadline, order.contentDescription, order.weight.ToString(), order.size, order.price.ToString() };

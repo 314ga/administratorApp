@@ -10,7 +10,7 @@ namespace AdministratorApp
     public class TestClass
     {
 
-        public OrderList getFakeOrders()
+       /* public OrderList getFakeOrders()
         {
             Order order = new Order();
             order.companyID = "111";
@@ -33,15 +33,16 @@ namespace AdministratorApp
             order.weight = 44;
             order.size = "ffff";
             order.price = 4444;
+
             List<Order> aladar = new List<Order>();
             aladar.Add(order);
             aladar.Add(order);
             aladar.Add(order);
             aladar.Add(order);
             OrderList orderList = new OrderList();
-            orderList.Orders = aladar;
+            orderList.orders = aladar;
             return orderList;
             
-        }
+        }*/
     }
 }

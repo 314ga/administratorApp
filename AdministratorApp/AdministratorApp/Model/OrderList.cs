@@ -8,6 +8,6 @@ namespace AdministratorApp
 {
     public class OrderList
     {
-        public List<Order> Orders { get; set; }
+        public List<Order> orders { get; set; }
     }
 }

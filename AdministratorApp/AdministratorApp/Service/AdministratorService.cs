@@ -30,12 +30,12 @@ namespace AdministratorApp.Service
            clientSocket.Connect(serverAddress);
         }
 
-        public void GetOrdersList()
+        public OrderList GetOrdersList()
         {
             //fetch request
             Request.action = SocketRequest.ACTION.GET_ORDERS;
 
-            //transform to JSON
+            //seriliazing to JSON
             string requestAsJSON = JsonConvert.SerializeObject(Request);
 
             //socket connection
@@ -45,7 +45,19 @@ namespace AdministratorApp.Service
             SendRequestMessage(requestAsJSON);
 
             //read resultset
-     
+            string JsonString = ReadResultset();
+
+            OrderList obj = new OrderList();
+
+            //deseriliasing 
+            obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
+
+            //clientSocket.Close(); 
+
+            return obj;
+
+            
+
         }
 
         public String ReadResultset()

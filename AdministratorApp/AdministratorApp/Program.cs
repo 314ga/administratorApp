@@ -18,8 +18,7 @@ namespace AdministratorApp
         [STAThread]
         static void Main()
         {
-            AdministratorService client = new AdministratorService();
-            client.GetOrdersList();
+            
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

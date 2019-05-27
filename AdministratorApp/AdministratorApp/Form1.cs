@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdministratorApp.Service;
+
 
 namespace AdministratorApp
 {
@@ -29,8 +31,8 @@ namespace AdministratorApp
         private void tabControl1_Enter(object sender, EventArgs e)
         {
             //TODO: get all orders from database
-            TestClass testClass = new TestClass();
-            orderList = testClass.getFakeOrders();
+            AdministratorService client = new AdministratorService();
+            orderList = client.GetOrdersList();
             updateListView();
         }
 
@@ -42,8 +44,8 @@ namespace AdministratorApp
         private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: get all orders from database
-            TestClass testClass = new TestClass();
-            orderList = testClass.getFakeOrders();
+            AdministratorService client = new AdministratorService();
+            orderList = client.GetOrdersList();
             updateListView();
         }
 
@@ -62,16 +64,17 @@ namespace AdministratorApp
         private void assignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: get assigned orders from database
-            TestClass testClass = new TestClass();
-            orderList = testClass.getFakeOrders();
+            AdministratorService client = new AdministratorService();
+            orderList = client.GetOrdersList();
+
             updateListView();
         }
 
         private void unassignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             //TODO: get unassigned orders from database
-            TestClass testClass = new TestClass();
-            orderList = testClass.getFakeOrders();
+            AdministratorService client = new AdministratorService();
+            orderList = client.GetOrdersList();
             updateListView();
         }
     }
