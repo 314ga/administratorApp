@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdministratorApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,32 +9,39 @@ namespace AdministratorApp
 {
     public class ListAdapter
     {
+        
+        
         public List<string[]> GetAllOrdersList(OrderList orderList)
         {
-            List<string[]> orders = new List<string[]>();
+            TestClass testcl = new TestClass();
+            orderList = testcl.getFakeOrders();
+
+
+             List<string[]> orders = new List<string[]>();
             foreach (Order order in orderList.orders)
             {
-                string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(), order.pickUpDeadline,
-                    order.dropOffAddress.ToString(), order.dropOffDeadline, order.contentDescription, order.weight.ToString(),
-                    order.size, order.price.ToString(), getStatus(order) };
+                string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(),
+                    order.pickUpDeadline, order.dropOffAddress.ToString(), order.dropOffDeadline, getStatus(order) };
                 orders.Add(row);
             }
             return orders;
-
         }
 
-        public List<string[]> GetAssignedOrderList(OrderList orderList)
-        { 
-            List<string[]> orders = new List<string[]>();
-            foreach (Order order in orderList.orders)
+        public List<string[]> GetAllCustomers(ClientList clientList)
+        {
+            TestClass testcl = new TestClass();
+            clientList = testcl.getFakeClients();
+
+            List<string[]> clients = new List<string[]>();
+            foreach (AbstractClient client in clientList.clients)
             {
-                string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(), order.pickUpDeadline,
-                    order.dropOffAddress.ToString(), order.dropOffDeadline, order.contentDescription, order.weight.ToString(), order.size, order.price.ToString() };
-                orders.Add(row);
+                string[] row = { client.clientId, client.companyName, client.address.ToString(), client.telephoneNumber, client.email };
+                clients.Add(row);
             }
-            return orders;
-
+            return clients;
         }
+
+
 
         private string getStatus(Order order)
         {
@@ -52,5 +60,7 @@ namespace AdministratorApp
 
             return status;
         }
+
+       
     }
 }

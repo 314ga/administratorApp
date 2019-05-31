@@ -9,7 +9,7 @@ namespace AdministratorApp
 {
     public class Order
     {
-
+        
         public string orderNumber { get; set; }
         public string companyID { get; set; }
         public Address pickUpAddress { get; set; }

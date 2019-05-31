@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdministratorApp.Model;
 using AdministratorApp.Service;
 
 namespace AdministratorApp
@@ -18,8 +19,6 @@ namespace AdministratorApp
         [STAThread]
         static void Main()
         {
-            
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new form1());

@@ -15,12 +15,6 @@ namespace AdministratorApp.Model
         public ACTION action;
         public object obj;
 
-   /*public SocketRequest(ACTION action, Object obj)
-        {
-            this.action = action;
-            this.obj = obj;
-        }*/
-
         public enum ACTION
         {
             GET_ORDERS,
@@ -29,8 +23,8 @@ namespace AdministratorApp.Model
             GET_ORDER_BY_ID,
             UPDATE_ORDER,
             DELETE_ORDER,
-            ADD_ORDER,
-            GET_CLIENTS,
+            GET_CUSTOMERS,
+            GET_CONTRACTORS,
             GET_CLIENT_BY_ID,
             UPDATE_CLIENT,
             DELETE_CLIENT,
