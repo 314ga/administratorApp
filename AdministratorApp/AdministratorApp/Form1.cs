@@ -18,9 +18,8 @@ namespace AdministratorApp
         ListAdapter listAdapter = new ListAdapter();
         OrderList orderList;
         ClientList clientList;
-       
-
-       // AdministratorService client = new AdministratorService();
+        AdministratorService administratorService = new AdministratorService();
+    
         public form1()
         {
             InitializeComponent();
@@ -32,30 +31,6 @@ namespace AdministratorApp
 
         }
 
- 
-        private void tabControl1_Enter(object sender, EventArgs e)
-        {
-            //get all orders from database
-            TestClass testData = new TestClass();
-            testData.getFakeOrders();
-            updateListView();
-        }
-
-        private void allClientView_Enter(object sender, EventArgs e)
-        {
-            //get all orders from database
-            TestClass testData = new TestClass();
-            testData.getFakeClients();
-            updateListView();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
         private void updateListView()
         {
             listView1.Items.Clear();
@@ -65,7 +40,6 @@ namespace AdministratorApp
                 listView1.Items.Add(new ListViewItem(order));
             }
         }
-
 
         private void updateCustomerView()
         {
@@ -77,100 +51,74 @@ namespace AdministratorApp
             }
         }
 
+
+
         private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             // get all orders from database
-            TestClass testData = new TestClass();
-            testData.getFakeOrders();
-            updateListView();
+            if (allRadioBtn.Checked == true)
+            {
+                orderList = administratorService.GetOrdersList();
+                updateListView();
+            }
+                
         }
 
         private void assignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            //TODO: get assigned orders from database
-            TestClass testData = new TestClass();
-            testData.getFakeOrders();
-            updateListView();
+            if (assignedRadioBtn.Checked == true)
+            {
+                orderList = administratorService.GetAssignedOrders();
+                updateListView();
+            }
         }
 
         private void unassignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            //TODO: get unassigned orders from database
-            TestClass testData = new TestClass();
-            testData.getFakeOrders();
-            updateListView();
+            if (unassignedRadioBtn.Checked == true)
+            {
+                orderList = administratorService.GetUnassignedOrders();
+                updateListView();
+            }
         }
 
-        private void AllClients_CheckedChanged(object sender, EventArgs e)
-        {
-            TestClass testData = new TestClass();
-            testData.getFakeClients();
-            updateCustomerView();
 
-        }
+
 
         private void CustomerButton_CheckedChanged(object sender, EventArgs e)
         {
-            TestClass testData = new TestClass();
-            testData.getFakeCustomers();
-            updateCustomerView();
+            if (CustomerButton.Checked == true)
+            {
+                clientList = administratorService.GetCustomers();
+                updateCustomerView();
+            }
         }
 
         private void ContractorButton_CheckedChanged(object sender, EventArgs e)
         {
-            TestClass testData = new TestClass();
-            testData.getFakeContractors();
-            updateCustomerView();
+            if (ContractorButton.Checked == true)
+            {
+                clientList = administratorService.GetContractors();
+                updateCustomerView();
+            }
         }
 
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void AllClients_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (AllClients.Checked == true)
+            {
+                clientList = administratorService.GetClients();
+                updateCustomerView();
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
-
-       
 
         private void AddClient_Click(object sender, EventArgs e)
         {
             Form2 addClient = new Form2();
             addClient.ShowDialog();
         }
-
     }
 }

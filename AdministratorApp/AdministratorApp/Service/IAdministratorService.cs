@@ -13,6 +13,7 @@ namespace AdministratorApp.Service
         OrderList GetAssignedOrders();
         OrderList GetUnassignedOrders();
         ClientList GetContractors();
+        ClientList GetClients();
         ClientList GetCustomers();
         void UpdateOrder(Order order);
         void DeleteOrder(Order order);

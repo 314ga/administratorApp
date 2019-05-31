@@ -13,11 +13,7 @@ namespace AdministratorApp
         
         public List<string[]> GetAllOrdersList(OrderList orderList)
         {
-            TestClass testcl = new TestClass();
-            orderList = testcl.getFakeOrders();
-
-
-             List<string[]> orders = new List<string[]>();
+                         List<string[]> orders = new List<string[]>();
             foreach (Order order in orderList.orders)
             {
                 string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(),
@@ -29,8 +25,7 @@ namespace AdministratorApp
 
         public List<string[]> GetAllCustomers(ClientList clientList)
         {
-            TestClass testcl = new TestClass();
-            clientList = testcl.getFakeClients();
+           
 
             List<string[]> clients = new List<string[]>();
             foreach (AbstractClient client in clientList.clients)

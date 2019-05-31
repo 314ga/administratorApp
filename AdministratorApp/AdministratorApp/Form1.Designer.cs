@@ -32,7 +32,7 @@ namespace AdministratorApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.allClientView = new System.Windows.Forms.TabControl();
+            this.NavBar = new System.Windows.Forms.TabControl();
             this.allOrders = new System.Windows.Forms.TabPage();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.CustomerFilter = new System.Windows.Forms.RadioButton();
@@ -74,24 +74,23 @@ namespace AdministratorApp
             this.orderNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.createdBy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickUpAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.allClientView.SuspendLayout();
+            this.NavBar.SuspendLayout();
             this.allOrders.SuspendLayout();
             this.clientTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // allClientView
+            // NavBar
             // 
-            this.allClientView.Controls.Add(this.allOrders);
-            this.allClientView.Controls.Add(this.clientTab);
-            this.allClientView.ItemSize = new System.Drawing.Size(100, 28);
-            this.allClientView.Location = new System.Drawing.Point(1, 1);
-            this.allClientView.Margin = new System.Windows.Forms.Padding(4);
-            this.allClientView.Name = "allClientView";
-            this.allClientView.Padding = new System.Drawing.Point(16, 5);
-            this.allClientView.SelectedIndex = 0;
-            this.allClientView.Size = new System.Drawing.Size(1544, 745);
-            this.allClientView.TabIndex = 0;
-            this.allClientView.Enter += new System.EventHandler(this.allClientView_Enter);
+            this.NavBar.Controls.Add(this.allOrders);
+            this.NavBar.Controls.Add(this.clientTab);
+            this.NavBar.ItemSize = new System.Drawing.Size(100, 28);
+            this.NavBar.Location = new System.Drawing.Point(1, 1);
+            this.NavBar.Margin = new System.Windows.Forms.Padding(4);
+            this.NavBar.Name = "NavBar";
+            this.NavBar.Padding = new System.Drawing.Point(16, 5);
+            this.NavBar.SelectedIndex = 0;
+            this.NavBar.Size = new System.Drawing.Size(1544, 745);
+            this.NavBar.TabIndex = 0;
             // 
             // allOrders
             // 
@@ -145,7 +144,7 @@ namespace AdministratorApp
             this.CustomerFilter.TabStop = true;
             this.CustomerFilter.Text = "Customer";
             this.CustomerFilter.UseVisualStyleBackColor = false;
-            this.CustomerFilter.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            
             // 
             // DeadlineFIlter
             // 
@@ -159,7 +158,7 @@ namespace AdministratorApp
             this.DeadlineFIlter.TabStop = true;
             this.DeadlineFIlter.Text = "Deadline";
             this.DeadlineFIlter.UseVisualStyleBackColor = false;
-            this.DeadlineFIlter.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            
             // 
             // StatusFilter
             // 
@@ -174,7 +173,7 @@ namespace AdministratorApp
             this.StatusFilter.TabStop = true;
             this.StatusFilter.Text = "Status";
             this.StatusFilter.UseVisualStyleBackColor = false;
-            this.StatusFilter.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+           
             // 
             // label2
             // 
@@ -188,7 +187,7 @@ namespace AdministratorApp
             this.label2.TabIndex = 12;
             this.label2.Text = "Order by";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+           
             // 
             // unassignedRadioBtn
             // 
@@ -312,8 +311,7 @@ namespace AdministratorApp
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+          
             // 
             // orderID
             // 
@@ -390,7 +388,6 @@ namespace AdministratorApp
             this.SearchButton.TabIndex = 24;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
-            this.SearchButton.Click += new System.EventHandler(this.button4_Click);
             // 
             // ContractorButton
             // 
@@ -497,12 +494,13 @@ namespace AdministratorApp
             this.PhoneNumber,
             this.Email});
             this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(93, 88);
+            this.listView2.Location = new System.Drawing.Point(49, 91);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(1190, 595);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
+        
             // 
             // CustomerID
             // 
@@ -547,12 +545,12 @@ namespace AdministratorApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(91)))), ((int)(((byte)(119)))));
             this.ClientSize = new System.Drawing.Size(1547, 742);
-            this.Controls.Add(this.allClientView);
+            this.Controls.Add(this.NavBar);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "form1";
             this.Text = "3TL Administrator";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.allClientView.ResumeLayout(false);
+            this.NavBar.ResumeLayout(false);
             this.allOrders.ResumeLayout(false);
             this.allOrders.PerformLayout();
             this.clientTab.ResumeLayout(false);
@@ -563,7 +561,7 @@ namespace AdministratorApp
 
         #endregion
 
-        private TabControl allClientView;
+        private TabControl NavBar;
         private TabPage allOrders;
         private ListView listView1;
         private ColumnHeader orderNumber;

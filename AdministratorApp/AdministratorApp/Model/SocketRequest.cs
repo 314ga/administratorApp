@@ -24,6 +24,7 @@ namespace AdministratorApp.Model
             UPDATE_ORDER,
             DELETE_ORDER,
             GET_CUSTOMERS,
+            GET_CLIENTS,
             GET_CONTRACTORS,
             GET_CLIENT_BY_ID,
             UPDATE_CLIENT,

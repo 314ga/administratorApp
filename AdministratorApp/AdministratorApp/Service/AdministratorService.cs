@@ -25,8 +25,7 @@ namespace AdministratorApp.Service
 
         public AdministratorService()
         {
-            //socket connection
-            //Setup();
+           
         }
 
         public static string GetLocalIPAddress()
@@ -101,7 +100,7 @@ namespace AdministratorApp.Service
         public OrderList GetAssignedOrders()
         {
             //socket connection
-            //Setup();
+            Setup();
 
             Request.action = SocketRequest.ACTION.GET_ASSIGNED_ORDERS;
             string requestAsJSON = JsonConvert.SerializeObject(Request);
@@ -119,7 +118,7 @@ namespace AdministratorApp.Service
         public OrderList GetUnassignedOrders()
         {
             //socket connection
-           // Setup();
+            Setup();
 
             Request.action = SocketRequest.ACTION.GET_UNASSIGNED_ORDERS;
             string requestAsJSON = JsonConvert.SerializeObject(Request);
@@ -130,11 +129,26 @@ namespace AdministratorApp.Service
             OrderList obj = new OrderList();
             obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
 
-            //clientSocket.Close();
+            clientSocket.Close();
 
             return obj;
         }
+        public ClientList GetClients()
+        {
+            //socket connection
+            Setup();
 
+            Request.action = SocketRequest.ACTION.GET_CLIENTS;
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            SendMessage(requestAsJSON);
+            string JsonString = ReadResultset();
+
+            ClientList obj = new ClientList();
+            obj = JsonConvert.DeserializeObject<ClientList>(JsonString);
+            clientSocket.Close();
+            return obj;
+        }
         public ClientList GetContractors()
         {
             //socket connection
@@ -164,7 +178,7 @@ namespace AdministratorApp.Service
 
             ClientList obj = new ClientList();
             obj = JsonConvert.DeserializeObject<ClientList>(JsonString);
-
+            clientSocket.Close();
             return obj;
         }
 
@@ -203,8 +217,9 @@ namespace AdministratorApp.Service
             string JsonString = ReadResultset();
             Boolean response = false;
             if (JsonString.Equals("success")) { response = true; }
-            return response;
             clientSocket.Close();
+            return response;
+            
         }
 
         public void UpdateClient(AbstractClient client)
