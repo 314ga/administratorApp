@@ -38,7 +38,7 @@
             // 
             this.clientInfoTxtBox.AutoSize = true;
             this.clientInfoTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.clientInfoTxtBox.Location = new System.Drawing.Point(86, 120);
+            this.clientInfoTxtBox.Location = new System.Drawing.Point(8, 109);
             this.clientInfoTxtBox.Name = "clientInfoTxtBox";
             this.clientInfoTxtBox.Size = new System.Drawing.Size(140, 20);
             this.clientInfoTxtBox.TabIndex = 0;
@@ -47,7 +47,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AdministratorApp.Properties.Resources.orderIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(102, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(110, 94);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -57,7 +57,7 @@
             // closeBtn
             // 
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.closeBtn.Location = new System.Drawing.Point(123, 394);
+            this.closeBtn.Location = new System.Drawing.Point(12, 265);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBtn.TabIndex = 2;
@@ -69,7 +69,7 @@
             this.AcceptButton = this.closeBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 429);
+            this.ClientSize = new System.Drawing.Size(482, 302);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.clientInfoTxtBox);

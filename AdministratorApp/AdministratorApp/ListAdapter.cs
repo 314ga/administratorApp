@@ -17,7 +17,7 @@ namespace AdministratorApp
             foreach (Order order in orderList.orders)
             {
                 string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(),
-                    order.pickUpDeadline, order.dropOffAddress.ToString(), order.dropOffDeadline, order.getStatus() };
+                    order.pickUpDeadline, order.dropOffAddress.ToString(), order.dropOffDeadline, order.getStatus()};
                 orders.Add(row);
             }
             return orders;
@@ -30,7 +30,7 @@ namespace AdministratorApp
             List<string[]> clients = new List<string[]>();
             foreach (AbstractClient client in clientList.clients)
             {
-                string[] row = { client.clientId, client.companyName, client.address.ToString(), client.telephoneNumber, client.email };
+                string[] row = { client.clientId, client.companyName, client.address.ToString(), client.telephoneNumber, client.email, client.clientType};
                 clients.Add(row);
             }
             return clients;

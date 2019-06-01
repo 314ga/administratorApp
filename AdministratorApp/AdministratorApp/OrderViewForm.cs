@@ -19,81 +19,111 @@ namespace AdministratorApp
             InitializeComponent();
         }
         #region getters, setters
-    
-        public string EmailField
-        {
-            get { return Email.Text; }
-            set { Email.Text = value; }
 
-        }
-        public string StreetField
+        public string PickStreetField
         {
             get { return street.Text; }
             set { street.Text = value; }
 
         }
-        public string PostcodeField
+        public string PickPostcodeField
         {
             get { return postcode.Text; }
             set { postcode.Text = value; }
 
         }
-        public string CityField
+        public string PickCityField
         {
             get { return city.Text; }
             set { city.Text = value; }
 
         }
-        public string StateFeild
+        public string PickStateFeild
         {
             get { return state.Text; }
             set { state.Text = value; }
 
         }
-        public Boolean CustomerButton
+        public string DropStreetField
         {
-            get { return customer.Checked; }
-            set { customer.Checked = value; }
+            get { return dropStreet.Text; }
+            set { dropStreet.Text = value; }
 
         }
-        public Boolean ContractorButton
+        public string DropPostcodeField
         {
-            get { return contractor.Checked; }
-            set { contractor.Checked = value; }
+            get { return dropPostcode.Text; }
+            set { dropPostcode.Text = value; }
 
         }
+        public string DropCityField
+        {
+            get { return dropCity.Text; }
+            set { dropCity.Text = value; }
+
+        }
+        public string DropStateFeild
+        {
+            get { return dropState.Text; }
+            set { dropState.Text = value; }
+
+        }
+        public string Weight
+        {
+            get { return weight.Text; }
+            set { weight.Text = value; }
+
+        }
+        public string PriceField
+        {
+            get { return Price.Text; }
+            set { Price.Text = value; }
+
+        }
+        public string PackageSizeField
+        {
+            get { return Size.Text; }
+            set { Size.Text = value; }
+
+        }
+        public string ContainerSize
+        {
+            get { return containerSize.Text; }
+            set { containerSize.Text = value; }
+
+        }
+        public Boolean avaitingPickUp
+        {
+            get { return avaitingPickCheck.Checked; }
+            set { avaitingPickCheck.Checked = value; }
+
+        }
+        public Boolean PickedUp
+        {
+            get { return pickedUpCheck.Checked; }
+            set { pickedUpCheck.Checked = value; }
+        }
+        public Boolean LateDelivery
+        {
+            get { return lateDeliveryCheck.Checked; }
+            set { lateDeliveryCheck.Checked = value; }
+
+        }
+        public Boolean Delivered
+        {
+            get { return deliveredCheck.Checked; }
+            set { deliveredCheck.Checked = value; }
+        }
+
         #endregion
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+   
 
         #region hints
 
        
 
-        private void Email_Enter(object sender, EventArgs e)
-        {
-            if (Email.Text == "Email")
-            {
-                Email.Text = "";
-
-                Email.ForeColor = Color.Black;
-            }
-        }
-
-        private void Email_Leave(object sender, EventArgs e)
-        {
-            if (Email.Text == "")
-            {
-                Email.Text = "Email";
-
-                Email.ForeColor = Color.Silver;
-            }
-        }
-
-       
+             
         private void street_Enter(object sender, EventArgs e)
         {
             if (street.Text == "Street")
@@ -175,13 +205,7 @@ namespace AdministratorApp
         }
         #endregion
 
+
        
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
- 
     }
 }

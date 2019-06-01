@@ -264,7 +264,7 @@ namespace AdministratorApp.Service
             
         }
 
-        public void UpdateClient(AbstractClient client)
+        public Boolean UpdateClient(AbstractClient client)
         {
             //socket connection
             Setup();
@@ -273,10 +273,15 @@ namespace AdministratorApp.Service
             Request.obj = client;
             string clientAsJson = JsonConvert.SerializeObject(Request);
             SendMessage(clientAsJson);
+
+            string JsonString = ReadResultset();
+            Boolean response = false;
+            if (JsonString.Equals("success")) { response = true; }
             clientSocket.Close();
+            return response;
         }
 
-        public void DeleteClient(AbstractClient client)
+        public Boolean DeleteClient(AbstractClient client)
         {
             //socket connection
             Setup();
@@ -285,7 +290,12 @@ namespace AdministratorApp.Service
             Request.obj = client;
             string clientAsJson = JsonConvert.SerializeObject(Request);
             SendMessage(clientAsJson);
+
+            string JsonString = ReadResultset();
+            Boolean response = false;
+            if (JsonString.Equals("success")) { response = true; }
             clientSocket.Close();
+            return response;
         }
 
     }

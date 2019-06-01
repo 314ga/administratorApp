@@ -13,12 +13,28 @@ namespace AdministratorApp
 {
     public partial class Form2 : Form
     {
-        IAdministratorService administratorService = new AdministratorService();
+        private string clientID = "0"; 
+        private IAdministratorService administratorService = new AdministratorService();
         public Form2()
         {
             InitializeComponent();
         }
         #region getters, setters
+        public string Title
+        {
+            get { return showClientTitle.Text; }
+            set { showClientTitle.Text = value; }
+
+        }
+
+        public void setClientID(string id)
+        {
+            clientID = id;
+        }
+        public void changeButtonName(String name)
+        {
+            clientConfirmBtn.Text = name;
+        }
         public string CompanyNameField
         {
             get { return CompanyName.Text; }
@@ -234,7 +250,6 @@ namespace AdministratorApp
             }
             else
             {
-
                 Address address = new Address();
                 address.city = city.Text;
                 address.country = state.Text;
@@ -249,16 +264,34 @@ namespace AdministratorApp
                     client.clientType = "customer";
                 else
                     client.clientType = "contractor";
-                client.passwordHash = "123456";
-                if (administratorService.AddClient(client))
+                if (clientConfirmBtn.Text.Equals("Save changes"))
                 {
-                    this.Close();
-                    MessageBox.Show("Client succesfully created");
+                    client.clientId = "" + clientID;
+                    if (administratorService.UpdateClient(client))
+                    {
+                        
+                        this.Close();
+                        MessageBox.Show("Client succesfully change");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error changing user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error creating user","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    if (administratorService.AddClient(client))
+                    {
+                        this.Close();
+                        MessageBox.Show("Client succesfully created");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error creating user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+               
+                
             }
 
              

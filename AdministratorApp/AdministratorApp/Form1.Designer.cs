@@ -57,7 +57,6 @@ namespace AdministratorApp
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clientTab = new System.Windows.Forms.TabPage();
             this.clientInfo = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ContractorButton = new System.Windows.Forms.RadioButton();
             this.CustomerButton = new System.Windows.Forms.RadioButton();
@@ -72,9 +71,11 @@ namespace AdministratorApp
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clietType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orderNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.createdBy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickUpAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
             this.allOrders.SuspendLayout();
             this.clientTab.SuspendLayout();
@@ -295,47 +296,46 @@ namespace AdministratorApp
             this.orderListView.TabIndex = 0;
             this.orderListView.UseCompatibleStateImageBehavior = false;
             this.orderListView.View = System.Windows.Forms.View.Details;
-            this.orderListView.SelectedIndexChanged += new System.EventHandler(this.orderListView_SelectedIndexChanged);
             // 
             // orderID
             // 
             this.orderID.Text = "   Order ID";
-            this.orderID.Width = 103;
+            this.orderID.Width = 86;
             // 
             // created
             // 
             this.created.Text = "Customer";
-            this.created.Width = 140;
+            this.created.Width = 83;
             // 
             // pickUpAdd
             // 
             this.pickUpAdd.Text = "Pick up address";
-            this.pickUpAdd.Width = 242;
+            this.pickUpAdd.Width = 127;
             // 
             // pickUpDead
             // 
             this.pickUpDead.Text = "Pick Up Deadline";
-            this.pickUpDead.Width = 172;
+            this.pickUpDead.Width = 136;
             // 
             // dropOffAdd
             // 
             this.dropOffAdd.Text = "Drop off address";
-            this.dropOffAdd.Width = 286;
+            this.dropOffAdd.Width = 133;
             // 
             // dropOffDead
             // 
             this.dropOffDead.Text = "Drop off deadline";
-            this.dropOffDead.Width = 223;
+            this.dropOffDead.Width = 140;
             // 
             // status
             // 
             this.status.Text = "Status";
-            this.status.Width = 131;
+            this.status.Width = 259;
             // 
             // clientTab
             // 
+            this.clientTab.Controls.Add(this.label4);
             this.clientTab.Controls.Add(this.clientInfo);
-            this.clientTab.Controls.Add(this.textBox2);
             this.clientTab.Controls.Add(this.SearchButton);
             this.clientTab.Controls.Add(this.ContractorButton);
             this.clientTab.Controls.Add(this.CustomerButton);
@@ -367,23 +367,16 @@ namespace AdministratorApp
             this.clientInfo.UseVisualStyleBackColor = false;
             this.clientInfo.Click += new System.EventHandler(this.clientInfo_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(20, 6);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(968, 45);
-            this.textBox2.TabIndex = 25;
-            // 
             // SearchButton
             // 
-            this.SearchButton.BackColor = System.Drawing.Color.PaleGreen;
-            this.SearchButton.Location = new System.Drawing.Point(1000, 28);
+            this.SearchButton.BackColor = System.Drawing.Color.LawnGreen;
+            this.SearchButton.Location = new System.Drawing.Point(997, 10);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(111, 37);
+            this.SearchButton.Size = new System.Drawing.Size(115, 45);
             this.SearchButton.TabIndex = 24;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "Refresh";
             this.SearchButton.UseVisualStyleBackColor = false;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // ContractorButton
             // 
@@ -430,9 +423,9 @@ namespace AdministratorApp
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(997, 89);
+            this.label3.Location = new System.Drawing.Point(997, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 50);
+            this.label3.Size = new System.Drawing.Size(115, 28);
             this.label3.TabIndex = 20;
             this.label3.Text = "Choose type";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -472,6 +465,7 @@ namespace AdministratorApp
             this.DeleteClient.TabIndex = 16;
             this.DeleteClient.Text = "Delete client";
             this.DeleteClient.UseVisualStyleBackColor = false;
+            this.DeleteClient.Click += new System.EventHandler(this.DeleteClient_Click);
             // 
             // clientListView
             // 
@@ -482,42 +476,49 @@ namespace AdministratorApp
             this.Column2,
             this.Address,
             this.PhoneNumber,
-            this.Email});
+            this.Email,
+            this.clietType});
             this.clientListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.clientListView.FullRowSelect = true;
             this.clientListView.GridLines = true;
-            this.clientListView.Location = new System.Drawing.Point(20, 66);
+            this.clientListView.Location = new System.Drawing.Point(15, 10);
             this.clientListView.Margin = new System.Windows.Forms.Padding(2);
             this.clientListView.Name = "clientListView";
-            this.clientListView.Size = new System.Drawing.Size(911, 484);
+            this.clientListView.Size = new System.Drawing.Size(950, 531);
             this.clientListView.TabIndex = 0;
             this.clientListView.UseCompatibleStateImageBehavior = false;
             this.clientListView.View = System.Windows.Forms.View.Details;
+            this.clientListView.SelectedIndexChanged += new System.EventHandler(this.clientListView_SelectedIndexChanged);
             // 
             // CustomerID
             // 
             this.CustomerID.Text = "CustomerID";
-            this.CustomerID.Width = 134;
+            this.CustomerID.Width = 108;
             // 
             // Column2
             // 
             this.Column2.Text = "Company name";
-            this.Column2.Width = 154;
+            this.Column2.Width = 135;
             // 
             // Address
             // 
             this.Address.Text = "Address";
-            this.Address.Width = 351;
+            this.Address.Width = 78;
             // 
             // PhoneNumber
             // 
-            this.PhoneNumber.Text = "PhoneNumber";
-            this.PhoneNumber.Width = 291;
+            this.PhoneNumber.Text = "Phone number";
+            this.PhoneNumber.Width = 125;
             // 
             // Email
             // 
             this.Email.Text = "Email";
-            this.Email.Width = 379;
+            this.Email.Width = 56;
+            // 
+            // clietType
+            // 
+            this.clietType.Text = "Client type";
+            this.clietType.Width = 405;
             // 
             // orderNumber
             // 
@@ -530,6 +531,18 @@ namespace AdministratorApp
             // pickUpAddress
             // 
             this.pickUpAddress.Text = "Pick up address";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(997, 323);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 27);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Manage client";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // form1
             // 
@@ -545,7 +558,6 @@ namespace AdministratorApp
             this.allOrders.ResumeLayout(false);
             this.allOrders.PerformLayout();
             this.clientTab.ResumeLayout(false);
-            this.clientTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -593,8 +605,9 @@ namespace AdministratorApp
         private RadioButton CustomerButton;
         private RadioButton AllClients;
         private Label label3;
-        private TextBox textBox2;
         private Button clientInfo;
+        private ColumnHeader clietType;
+        private Label label4;
     }
 }
 

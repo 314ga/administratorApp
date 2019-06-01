@@ -110,7 +110,12 @@ namespace AdministratorApp
             }
             else
                 AllClients.Checked = true;
-          
+
+            foreach (ListViewItem item in clientListView.Items)
+            {
+                item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
+            }
+
         }
 
         private void allOrders_Enter(object sender, EventArgs e)
@@ -165,8 +170,13 @@ namespace AdministratorApp
         }
         private string ConstructClientString(AbstractClient client)
         {
-            string result = "Created by: " + client.clientId + Environment.NewLine +
-                "Created by: " + client.clientType + Environment.NewLine;
+            string result = "Created by: " + client.clientId + Environment.NewLine
+                + "Client type: " + client.clientType + Environment.NewLine
+                + "Company name: " + client.companyName + Environment.NewLine
+                + "E-mail: " + client.email + Environment.NewLine
+                + "Tel. number: " + client.telephoneNumber + Environment.NewLine
+                + "Address: " + client.address + Environment.NewLine;
+
             return result;
 
 
@@ -207,16 +217,74 @@ namespace AdministratorApp
 
         private void EditClient_Click(object sender, EventArgs e)
         {
-            Form2 addClient = new Form2();
-            ListViewItem item = clientListView.SelectedItems[0];
-            AbstractClient client = administratorService.GetClientById(item.SubItems[0].Text);
-            addClient.CompanyNameField = client.companyName;
-            addClient.ShowDialog();
+            if (clientListView.SelectedItems.Count > 0)
+            {
+                Form2 addClient = new Form2();
+                ListViewItem item = clientListView.SelectedItems[0];
+                AbstractClient client = administratorService.GetClientById(item.SubItems[0].Text);
+                addClient.CompanyNameField = client.companyName;
+                addClient.TelNumberField = client.telephoneNumber;
+                addClient.EmailField = client.email;
+                addClient.StreetField = client.address.street;
+                addClient.PostcodeField = client.address.zipCode;
+                addClient.CityField = client.address.city;
+                addClient.StateFeild = client.address.country;
+                addClient.Title = "     Edit client";
+                addClient.setClientID(item.SubItems[0].Text);
+                addClient.changeButtonName("Save changes");
+                if (client.clientType.Equals("customer"))
+                {
+                    addClient.CustomerButton = true;
+                }
+                else
+                {
+                    addClient.ContractorButton = true;
+                }
+                addClient.ShowDialog();
+            }
         }
 
-        private void orderListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void DeleteClient_Click(object sender, EventArgs e)
+        {
+            if (clientListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = clientListView.SelectedItems[0];
+                AbstractClient client = administratorService.GetClientById(item.SubItems[0].Text);
+                if (administratorService.DeleteClient(client))
+                {
+                    MessageBox.Show("Client succesfully deleted");
+                    if (AllClients.Checked)
+                    {
+                        clientList = administratorService.GetClients();
+                        updateCustomerView();
+                    }
+                    else
+                        AllClients.Checked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Error deleting user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            
+        }
+
+        private void clientListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (AllClients.Checked)
+            {
+                clientList = administratorService.GetClients();
+                updateCustomerView();
+            }
+
+            else
+                AllClients.Checked = true;
         }
     }
 }

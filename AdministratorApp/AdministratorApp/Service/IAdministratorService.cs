@@ -20,8 +20,8 @@ namespace AdministratorApp.Service
         void UpdateOrder(Order order);
         void DeleteOrder(Order order);
         Boolean AddClient(AbstractClient client);
-        void UpdateClient(AbstractClient client);
-        void DeleteClient(AbstractClient client);
+        Boolean UpdateClient(AbstractClient client);
+        Boolean DeleteClient(AbstractClient client);
 
     }
 }
