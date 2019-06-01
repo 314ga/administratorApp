@@ -47,7 +47,7 @@ namespace AdministratorApp
             this.editBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.orderListView = new System.Windows.Forms.ListView();
             this.orderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.created = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickUpAdd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +56,7 @@ namespace AdministratorApp
             this.dropOffDead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clientTab = new System.Windows.Forms.TabPage();
+            this.clientInfo = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ContractorButton = new System.Windows.Forms.RadioButton();
@@ -65,7 +66,7 @@ namespace AdministratorApp
             this.AddClient = new System.Windows.Forms.Button();
             this.EditClient = new System.Windows.Forms.Button();
             this.DeleteClient = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.clientListView = new System.Windows.Forms.ListView();
             this.CustomerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,11 +86,10 @@ namespace AdministratorApp
             this.NavBar.Controls.Add(this.clientTab);
             this.NavBar.ItemSize = new System.Drawing.Size(100, 28);
             this.NavBar.Location = new System.Drawing.Point(1, 1);
-            this.NavBar.Margin = new System.Windows.Forms.Padding(4);
             this.NavBar.Name = "NavBar";
             this.NavBar.Padding = new System.Drawing.Point(16, 5);
             this.NavBar.SelectedIndex = 0;
-            this.NavBar.Size = new System.Drawing.Size(1544, 745);
+            this.NavBar.Size = new System.Drawing.Size(1158, 605);
             this.NavBar.TabIndex = 0;
             // 
             // allOrders
@@ -109,25 +109,24 @@ namespace AdministratorApp
             this.allOrders.Controls.Add(this.editBtn);
             this.allOrders.Controls.Add(this.deleteBtn);
             this.allOrders.Controls.Add(this.textBox1);
-            this.allOrders.Controls.Add(this.listView1);
+            this.allOrders.Controls.Add(this.orderListView);
             this.allOrders.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.allOrders.ForeColor = System.Drawing.Color.White;
             this.allOrders.Location = new System.Drawing.Point(4, 32);
-            this.allOrders.Margin = new System.Windows.Forms.Padding(4);
             this.allOrders.Name = "allOrders";
-            this.allOrders.Padding = new System.Windows.Forms.Padding(4);
-            this.allOrders.Size = new System.Drawing.Size(1536, 709);
+            this.allOrders.Padding = new System.Windows.Forms.Padding(3);
+            this.allOrders.Size = new System.Drawing.Size(1150, 569);
             this.allOrders.TabIndex = 0;
             this.allOrders.Text = "Orders";
             this.allOrders.UseVisualStyleBackColor = true;
+            this.allOrders.Enter += new System.EventHandler(this.allOrders_Enter);
             // 
             // RefreshButton
             // 
             this.RefreshButton.BackColor = System.Drawing.Color.GreenYellow;
-            this.RefreshButton.Location = new System.Drawing.Point(1337, 7);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4);
+            this.RefreshButton.Location = new System.Drawing.Point(1003, 6);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(182, 59);
+            this.RefreshButton.Size = new System.Drawing.Size(136, 48);
             this.RefreshButton.TabIndex = 16;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = false;
@@ -136,67 +135,58 @@ namespace AdministratorApp
             // 
             this.CustomerFilter.BackColor = System.Drawing.Color.SlateGray;
             this.CustomerFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CustomerFilter.Location = new System.Drawing.Point(1355, 415);
-            this.CustomerFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerFilter.Location = new System.Drawing.Point(1016, 337);
             this.CustomerFilter.Name = "CustomerFilter";
-            this.CustomerFilter.Size = new System.Drawing.Size(153, 36);
+            this.CustomerFilter.Size = new System.Drawing.Size(115, 29);
             this.CustomerFilter.TabIndex = 15;
             this.CustomerFilter.TabStop = true;
             this.CustomerFilter.Text = "Customer";
             this.CustomerFilter.UseVisualStyleBackColor = false;
-            
             // 
             // DeadlineFIlter
             // 
             this.DeadlineFIlter.BackColor = System.Drawing.Color.SlateGray;
             this.DeadlineFIlter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.DeadlineFIlter.Location = new System.Drawing.Point(1355, 373);
-            this.DeadlineFIlter.Margin = new System.Windows.Forms.Padding(4);
+            this.DeadlineFIlter.Location = new System.Drawing.Point(1016, 303);
             this.DeadlineFIlter.Name = "DeadlineFIlter";
-            this.DeadlineFIlter.Size = new System.Drawing.Size(153, 34);
+            this.DeadlineFIlter.Size = new System.Drawing.Size(115, 28);
             this.DeadlineFIlter.TabIndex = 14;
             this.DeadlineFIlter.TabStop = true;
             this.DeadlineFIlter.Text = "Deadline";
             this.DeadlineFIlter.UseVisualStyleBackColor = false;
-            
             // 
             // StatusFilter
             // 
             this.StatusFilter.BackColor = System.Drawing.Color.SlateGray;
             this.StatusFilter.Checked = true;
             this.StatusFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.StatusFilter.Location = new System.Drawing.Point(1355, 331);
-            this.StatusFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.StatusFilter.Location = new System.Drawing.Point(1016, 269);
             this.StatusFilter.Name = "StatusFilter";
-            this.StatusFilter.Size = new System.Drawing.Size(153, 34);
+            this.StatusFilter.Size = new System.Drawing.Size(115, 28);
             this.StatusFilter.TabIndex = 13;
             this.StatusFilter.TabStop = true;
             this.StatusFilter.Text = "Status";
             this.StatusFilter.UseVisualStyleBackColor = false;
-           
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(1356, 281);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(1017, 228);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 62);
+            this.label2.Size = new System.Drawing.Size(109, 50);
             this.label2.TabIndex = 12;
             this.label2.Text = "Order by";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-           
             // 
             // unassignedRadioBtn
             // 
             this.unassignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
             this.unassignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.unassignedRadioBtn.Location = new System.Drawing.Point(1356, 234);
-            this.unassignedRadioBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.unassignedRadioBtn.Location = new System.Drawing.Point(1017, 190);
             this.unassignedRadioBtn.Name = "unassignedRadioBtn";
-            this.unassignedRadioBtn.Size = new System.Drawing.Size(153, 36);
+            this.unassignedRadioBtn.Size = new System.Drawing.Size(115, 29);
             this.unassignedRadioBtn.TabIndex = 11;
             this.unassignedRadioBtn.TabStop = true;
             this.unassignedRadioBtn.Text = "Unassigned";
@@ -207,10 +197,9 @@ namespace AdministratorApp
             // 
             this.assignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
             this.assignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.assignedRadioBtn.Location = new System.Drawing.Point(1356, 192);
-            this.assignedRadioBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.assignedRadioBtn.Location = new System.Drawing.Point(1017, 156);
             this.assignedRadioBtn.Name = "assignedRadioBtn";
-            this.assignedRadioBtn.Size = new System.Drawing.Size(153, 34);
+            this.assignedRadioBtn.Size = new System.Drawing.Size(115, 28);
             this.assignedRadioBtn.TabIndex = 10;
             this.assignedRadioBtn.TabStop = true;
             this.assignedRadioBtn.Text = "Assigned";
@@ -222,10 +211,9 @@ namespace AdministratorApp
             this.allRadioBtn.BackColor = System.Drawing.Color.SlateGray;
             this.allRadioBtn.Checked = true;
             this.allRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.allRadioBtn.Location = new System.Drawing.Point(1356, 150);
-            this.allRadioBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.allRadioBtn.Location = new System.Drawing.Point(1017, 122);
             this.allRadioBtn.Name = "allRadioBtn";
-            this.allRadioBtn.Size = new System.Drawing.Size(153, 34);
+            this.allRadioBtn.Size = new System.Drawing.Size(115, 28);
             this.allRadioBtn.TabIndex = 9;
             this.allRadioBtn.TabStop = true;
             this.allRadioBtn.Text = "All";
@@ -237,10 +225,9 @@ namespace AdministratorApp
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(1356, 100);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(1017, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 62);
+            this.label1.Size = new System.Drawing.Size(109, 50);
             this.label1.TabIndex = 8;
             this.label1.Text = "Order type";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,51 +236,49 @@ namespace AdministratorApp
             // 
             this.allInfoBtn.BackColor = System.Drawing.Color.Orange;
             this.allInfoBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.allInfoBtn.Location = new System.Drawing.Point(1355, 503);
-            this.allInfoBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.allInfoBtn.Location = new System.Drawing.Point(1016, 409);
             this.allInfoBtn.Name = "allInfoBtn";
-            this.allInfoBtn.Size = new System.Drawing.Size(153, 40);
+            this.allInfoBtn.Size = new System.Drawing.Size(115, 32);
             this.allInfoBtn.TabIndex = 7;
             this.allInfoBtn.Text = "All info";
             this.allInfoBtn.UseVisualStyleBackColor = false;
+            this.allInfoBtn.Click += new System.EventHandler(this.allInfoBtn_Click);
             // 
             // editBtn
             // 
             this.editBtn.BackColor = System.Drawing.Color.Orange;
             this.editBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editBtn.Location = new System.Drawing.Point(1355, 551);
-            this.editBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.editBtn.Location = new System.Drawing.Point(1016, 448);
             this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(153, 40);
+            this.editBtn.Size = new System.Drawing.Size(115, 32);
             this.editBtn.TabIndex = 5;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = false;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // deleteBtn
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Orange;
-            this.deleteBtn.Location = new System.Drawing.Point(1356, 599);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteBtn.Location = new System.Drawing.Point(1017, 487);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(153, 38);
+            this.deleteBtn.Size = new System.Drawing.Size(115, 31);
             this.deleteBtn.TabIndex = 3;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 7);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(20, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1289, 54);
+            this.textBox1.Size = new System.Drawing.Size(968, 45);
             this.textBox1.TabIndex = 1;
             // 
-            // listView1
+            // orderListView
             // 
-            this.listView1.AllowColumnReorder = true;
-            this.listView1.BackColor = System.Drawing.SystemColors.Window;
-            this.listView1.CheckBoxes = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.orderListView.AllowColumnReorder = true;
+            this.orderListView.BackColor = System.Drawing.SystemColors.Window;
+            this.orderListView.CheckBoxes = true;
+            this.orderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.orderID,
             this.created,
             this.pickUpAdd,
@@ -301,17 +286,16 @@ namespace AdministratorApp
             this.dropOffAdd,
             this.dropOffDead,
             this.status});
-            this.listView1.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold);
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(26, 84);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1289, 603);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-          
+            this.orderListView.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold);
+            this.orderListView.FullRowSelect = true;
+            this.orderListView.GridLines = true;
+            this.orderListView.Location = new System.Drawing.Point(20, 68);
+            this.orderListView.Name = "orderListView";
+            this.orderListView.Size = new System.Drawing.Size(968, 491);
+            this.orderListView.TabIndex = 0;
+            this.orderListView.UseCompatibleStateImageBehavior = false;
+            this.orderListView.View = System.Windows.Forms.View.Details;
+            this.orderListView.SelectedIndexChanged += new System.EventHandler(this.orderListView_SelectedIndexChanged);
             // 
             // orderID
             // 
@@ -350,6 +334,7 @@ namespace AdministratorApp
             // 
             // clientTab
             // 
+            this.clientTab.Controls.Add(this.clientInfo);
             this.clientTab.Controls.Add(this.textBox2);
             this.clientTab.Controls.Add(this.SearchButton);
             this.clientTab.Controls.Add(this.ContractorButton);
@@ -359,32 +344,43 @@ namespace AdministratorApp
             this.clientTab.Controls.Add(this.AddClient);
             this.clientTab.Controls.Add(this.EditClient);
             this.clientTab.Controls.Add(this.DeleteClient);
-            this.clientTab.Controls.Add(this.listView2);
+            this.clientTab.Controls.Add(this.clientListView);
             this.clientTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.clientTab.Location = new System.Drawing.Point(4, 32);
-            this.clientTab.Margin = new System.Windows.Forms.Padding(4);
             this.clientTab.Name = "clientTab";
-            this.clientTab.Padding = new System.Windows.Forms.Padding(4);
-            this.clientTab.Size = new System.Drawing.Size(1536, 709);
+            this.clientTab.Padding = new System.Windows.Forms.Padding(3);
+            this.clientTab.Size = new System.Drawing.Size(1150, 569);
             this.clientTab.TabIndex = 1;
             this.clientTab.Text = "Clients";
             this.clientTab.UseVisualStyleBackColor = true;
+            this.clientTab.Enter += new System.EventHandler(this.clientTab_Enter);
+            // 
+            // clientInfo
+            // 
+            this.clientInfo.BackColor = System.Drawing.Color.Orange;
+            this.clientInfo.ForeColor = System.Drawing.Color.Transparent;
+            this.clientInfo.Location = new System.Drawing.Point(997, 353);
+            this.clientInfo.Name = "clientInfo";
+            this.clientInfo.Size = new System.Drawing.Size(115, 46);
+            this.clientInfo.TabIndex = 26;
+            this.clientInfo.Text = "Client Info";
+            this.clientInfo.UseVisualStyleBackColor = false;
+            this.clientInfo.Click += new System.EventHandler(this.clientInfo_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(37, 41);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Location = new System.Drawing.Point(20, 6);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(1289, 31);
+            this.textBox2.Size = new System.Drawing.Size(968, 45);
             this.textBox2.TabIndex = 25;
             // 
             // SearchButton
             // 
             this.SearchButton.BackColor = System.Drawing.Color.PaleGreen;
-            this.SearchButton.Location = new System.Drawing.Point(1334, 34);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SearchButton.Location = new System.Drawing.Point(1000, 28);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(148, 45);
+            this.SearchButton.Size = new System.Drawing.Size(111, 37);
             this.SearchButton.TabIndex = 24;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
@@ -393,10 +389,9 @@ namespace AdministratorApp
             // 
             this.ContractorButton.BackColor = System.Drawing.Color.SlateGray;
             this.ContractorButton.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ContractorButton.Location = new System.Drawing.Point(1329, 293);
-            this.ContractorButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ContractorButton.Location = new System.Drawing.Point(997, 238);
             this.ContractorButton.Name = "ContractorButton";
-            this.ContractorButton.Size = new System.Drawing.Size(153, 51);
+            this.ContractorButton.Size = new System.Drawing.Size(115, 41);
             this.ContractorButton.TabIndex = 23;
             this.ContractorButton.TabStop = true;
             this.ContractorButton.Text = "Contractors";
@@ -407,10 +402,9 @@ namespace AdministratorApp
             // 
             this.CustomerButton.BackColor = System.Drawing.Color.SlateGray;
             this.CustomerButton.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CustomerButton.Location = new System.Drawing.Point(1329, 234);
-            this.CustomerButton.Margin = new System.Windows.Forms.Padding(4);
+            this.CustomerButton.Location = new System.Drawing.Point(997, 190);
             this.CustomerButton.Name = "CustomerButton";
-            this.CustomerButton.Size = new System.Drawing.Size(153, 51);
+            this.CustomerButton.Size = new System.Drawing.Size(115, 41);
             this.CustomerButton.TabIndex = 22;
             this.CustomerButton.TabStop = true;
             this.CustomerButton.Text = "Customers";
@@ -422,10 +416,9 @@ namespace AdministratorApp
             this.AllClients.BackColor = System.Drawing.Color.SlateGray;
             this.AllClients.Checked = true;
             this.AllClients.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.AllClients.Location = new System.Drawing.Point(1329, 175);
-            this.AllClients.Margin = new System.Windows.Forms.Padding(4);
+            this.AllClients.Location = new System.Drawing.Point(997, 142);
             this.AllClients.Name = "AllClients";
-            this.AllClients.Size = new System.Drawing.Size(153, 51);
+            this.AllClients.Size = new System.Drawing.Size(115, 41);
             this.AllClients.TabIndex = 21;
             this.AllClients.TabStop = true;
             this.AllClients.Text = "All";
@@ -437,10 +430,9 @@ namespace AdministratorApp
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(1329, 109);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(997, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 62);
+            this.label3.Size = new System.Drawing.Size(115, 50);
             this.label3.TabIndex = 20;
             this.label3.Text = "Choose type";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -449,10 +441,9 @@ namespace AdministratorApp
             // 
             this.AddClient.BackColor = System.Drawing.Color.Orange;
             this.AddClient.ForeColor = System.Drawing.Color.Transparent;
-            this.AddClient.Location = new System.Drawing.Point(1329, 432);
-            this.AddClient.Margin = new System.Windows.Forms.Padding(4);
+            this.AddClient.Location = new System.Drawing.Point(997, 405);
             this.AddClient.Name = "AddClient";
-            this.AddClient.Size = new System.Drawing.Size(153, 56);
+            this.AddClient.Size = new System.Drawing.Size(115, 46);
             this.AddClient.TabIndex = 18;
             this.AddClient.Text = "Add client";
             this.AddClient.UseVisualStyleBackColor = false;
@@ -463,44 +454,45 @@ namespace AdministratorApp
             this.EditClient.BackColor = System.Drawing.Color.Orange;
             this.EditClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditClient.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EditClient.Location = new System.Drawing.Point(1329, 496);
-            this.EditClient.Margin = new System.Windows.Forms.Padding(4);
+            this.EditClient.Location = new System.Drawing.Point(997, 457);
             this.EditClient.Name = "EditClient";
-            this.EditClient.Size = new System.Drawing.Size(153, 46);
+            this.EditClient.Size = new System.Drawing.Size(115, 37);
             this.EditClient.TabIndex = 17;
             this.EditClient.Text = "Edit client";
             this.EditClient.UseVisualStyleBackColor = false;
+            this.EditClient.Click += new System.EventHandler(this.EditClient_Click);
             // 
             // DeleteClient
             // 
             this.DeleteClient.BackColor = System.Drawing.Color.Orange;
             this.DeleteClient.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.DeleteClient.Location = new System.Drawing.Point(1329, 549);
-            this.DeleteClient.Margin = new System.Windows.Forms.Padding(4);
+            this.DeleteClient.Location = new System.Drawing.Point(997, 500);
             this.DeleteClient.Name = "DeleteClient";
-            this.DeleteClient.Size = new System.Drawing.Size(153, 51);
+            this.DeleteClient.Size = new System.Drawing.Size(115, 41);
             this.DeleteClient.TabIndex = 16;
             this.DeleteClient.Text = "Delete client";
             this.DeleteClient.UseVisualStyleBackColor = false;
             // 
-            // listView2
+            // clientListView
             // 
-            this.listView2.BackColor = System.Drawing.SystemColors.Window;
-            this.listView2.BackgroundImageTiled = true;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.clientListView.BackColor = System.Drawing.SystemColors.Window;
+            this.clientListView.BackgroundImageTiled = true;
+            this.clientListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CustomerID,
             this.Column2,
             this.Address,
             this.PhoneNumber,
             this.Email});
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(49, 91);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1190, 595);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-        
+            this.clientListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.clientListView.FullRowSelect = true;
+            this.clientListView.GridLines = true;
+            this.clientListView.Location = new System.Drawing.Point(20, 66);
+            this.clientListView.Margin = new System.Windows.Forms.Padding(2);
+            this.clientListView.Name = "clientListView";
+            this.clientListView.Size = new System.Drawing.Size(911, 484);
+            this.clientListView.TabIndex = 0;
+            this.clientListView.UseCompatibleStateImageBehavior = false;
+            this.clientListView.View = System.Windows.Forms.View.Details;
             // 
             // CustomerID
             // 
@@ -541,12 +533,11 @@ namespace AdministratorApp
             // 
             // form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(91)))), ((int)(((byte)(119)))));
-            this.ClientSize = new System.Drawing.Size(1547, 742);
+            this.ClientSize = new System.Drawing.Size(1160, 603);
             this.Controls.Add(this.NavBar);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "form1";
             this.Text = "3TL Administrator";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -563,7 +554,7 @@ namespace AdministratorApp
 
         private TabControl NavBar;
         private TabPage allOrders;
-        private ListView listView1;
+        private ListView orderListView;
         private ColumnHeader orderNumber;
         private ColumnHeader createdBy;
         private ColumnHeader pickUpAddress;
@@ -588,7 +579,7 @@ namespace AdministratorApp
         private RadioButton StatusFilter;
         private Label label2;
         private Button RefreshButton;
-        private ListView listView2;
+        private ListView clientListView;
         private ColumnHeader CustomerID;
         private ColumnHeader Column2;
         private ColumnHeader Address;
@@ -603,6 +594,7 @@ namespace AdministratorApp
         private RadioButton AllClients;
         private Label label3;
         private TextBox textBox2;
+        private Button clientInfo;
     }
 }
 

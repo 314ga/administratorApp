@@ -14,7 +14,7 @@ using System.Net;
 
 namespace AdministratorApp.Service
 {
-    public class AdministratorService :IAdministratorService
+    public class AdministratorService : IAdministratorService
     {
         private int Port = 4400;
         IPEndPoint serverAddress;
@@ -48,7 +48,7 @@ namespace AdministratorApp.Service
             clientSocket.Connect(serverAddress);
         }
 
-        public String ReadResultset()
+        public string ReadResultset()
         {
              byte[] rcvLenBytes = new byte[4];
             clientSocket.Receive(rcvLenBytes);
@@ -62,7 +62,7 @@ namespace AdministratorApp.Service
             //missing JSON deserializing
         }
 
-        public void SendMessage(String Message)
+        public void SendMessage(string Message)
         {
             int toSendLen = Encoding.ASCII.GetByteCount(Message);
             byte[] toSendBytes = Encoding.ASCII.GetBytes(Message);
@@ -148,6 +148,48 @@ namespace AdministratorApp.Service
             obj = JsonConvert.DeserializeObject<ClientList>(JsonString);
             clientSocket.Close();
             return obj;
+        }
+
+        public AbstractClient GetClientById(string Id)
+        {
+            //socket connection
+            Setup();
+            AbstractClient client = new AbstractClient();
+            client.clientId = Id;
+            Request.obj = client;
+            Request.action = SocketRequest.ACTION.GET_CLIENT_BY_ID;
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            SendMessage(requestAsJSON);
+            string JsonString = ReadResultset();
+
+            client = new AbstractClient();
+
+            client = JsonConvert.DeserializeObject<AbstractClient>(JsonString);
+
+            clientSocket.Close();
+
+            return client;
+        }
+        public Order GetOrderById(string Id)
+        {
+            //socket connection
+            Setup();
+            Order order = new Order();
+            order.orderNumber = Id;
+            Request.obj = order;
+            Request.action = SocketRequest.ACTION.GET_ORDER_BY_ID;
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            SendMessage(requestAsJSON);
+            string JsonString = ReadResultset();
+
+        order = new Order();
+            order = JsonConvert.DeserializeObject<Order>(JsonString);
+
+            clientSocket.Close();
+
+            return order;
         }
         public ClientList GetContractors()
         {

@@ -63,9 +63,19 @@ namespace AdministratorApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap d {
+        internal static System.Drawing.Bitmap iconClient {
             get {
-                object obj = ResourceManager.GetObject("d", resourceCulture);
+                object obj = ResourceManager.GetObject("iconClient", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orderIcon {
+            get {
+                object obj = ResourceManager.GetObject("orderIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

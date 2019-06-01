@@ -27,5 +27,23 @@ namespace AdministratorApp
         public bool delivered { get; set; }
         public bool lateDelivery { get; set; }
         public double distance { get; set; }
+
+        public string getStatus()
+        {
+            string status;
+
+            if (awaitingPickUp)
+                status = "Assigned";
+            else if (pickedUp)
+                status = "Picked up";
+            else if (delivered)
+                status = "Delivered";
+            else if (lateDelivery)
+                status = "Late";
+            else
+                status = "Not assigned";
+
+            return status;
+        }
     }
 }

@@ -11,26 +11,15 @@ using AdministratorApp.Model;
 using AdministratorApp.Service;
 namespace AdministratorApp
 {
-    public partial class Form2 : Form
+    public partial class OrderViewForm : Form
     {
         IAdministratorService administratorService = new AdministratorService();
-        public Form2()
+        public OrderViewForm()
         {
             InitializeComponent();
         }
         #region getters, setters
-        public string CompanyNameField
-        {
-            get { return CompanyName.Text; }
-            set { CompanyName.Text = value; }
-
-        }
-        public string TelNumberField
-        {
-            get { return TelNo.Text; }
-            set { TelNo.Text = value; }
-
-        }
+    
         public string EmailField
         {
             get { return Email.Text; }
@@ -82,25 +71,7 @@ namespace AdministratorApp
 
         #region hints
 
-        private void TelNo_Enter(object sender, EventArgs e)
-        {
-            if (TelNo.Text == "Tel. number")
-            {
-                TelNo.Text = "";
-
-                TelNo.ForeColor = Color.Black;
-            }
-        }
-
-        private void TelNo_Leave(object sender, EventArgs e)
-        {
-            if (TelNo.Text == "")
-            {
-                TelNo.Text = "Tel. number";
-
-                TelNo.ForeColor = Color.Silver;
-            }
-        }
+       
 
         private void Email_Enter(object sender, EventArgs e)
         {
@@ -122,27 +93,7 @@ namespace AdministratorApp
             }
         }
 
-        private void CompanyName_Enter(object sender, EventArgs e)
-        {
-            if (CompanyName.Text == "Company name")
-            {
-                CompanyName.Text = "";
-
-                CompanyName.ForeColor = Color.Black;
-            }
-        }
-
-        private void CompanyName_Leave(object sender, EventArgs e)
-        {
-            if (CompanyName.Text == "")
-            {
-                CompanyName.Text = "Company name";
-
-                CompanyName.ForeColor = Color.Silver;
-            }
-        }
-
-
+       
         private void street_Enter(object sender, EventArgs e)
         {
             if (street.Text == "Street")
@@ -224,49 +175,13 @@ namespace AdministratorApp
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (city.Text.Equals("City") || state.Text.Equals("State") || street.Text.Equals("Street")
-                || state.Text.Equals("State") || postcode.Text.Equals("Postcode") || CompanyName.Text.Equals("Company name")
-                || Email.Text.Equals("Email") || TelNo.Text.Equals("Tel. number") || !(customer.Checked || contractor.Checked))
-            {
-                MessageBox.Show("Wrong input", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-
-                Address address = new Address();
-                address.city = city.Text;
-                address.country = state.Text;
-                address.street = street.Text;
-                address.zipCode = postcode.Text;
-                AbstractClient client = new AbstractClient();
-                client.address = address;
-                client.companyName = CompanyName.Text;
-                client.email = Email.Text;
-                client.telephoneNumber = TelNo.Text;
-                if (customer.Checked)
-                    client.clientType = "customer";
-                else
-                    client.clientType = "contractor";
-                client.passwordHash = "123456";
-                if (administratorService.AddClient(client))
-                {
-                    this.Close();
-                    MessageBox.Show("Client succesfully created");
-                }
-                else
-                {
-                    MessageBox.Show("Error creating user","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                }
-            }
-
-             
-        }
+       
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+ 
     }
 }

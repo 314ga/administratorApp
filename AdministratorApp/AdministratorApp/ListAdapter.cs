@@ -17,7 +17,7 @@ namespace AdministratorApp
             foreach (Order order in orderList.orders)
             {
                 string[] row = { order.orderNumber, order.companyID, order.pickUpAddress.ToString(),
-                    order.pickUpDeadline, order.dropOffAddress.ToString(), order.dropOffDeadline, getStatus(order) };
+                    order.pickUpDeadline, order.dropOffAddress.ToString(), order.dropOffDeadline, order.getStatus() };
                 orders.Add(row);
             }
             return orders;
@@ -36,25 +36,6 @@ namespace AdministratorApp
             return clients;
         }
 
-
-
-        private string getStatus(Order order)
-        {
-            string status;
-
-            if (order.awaitingPickUp)
-                status = "Assigned";
-            else if (order.pickedUp)
-                status = "Picked up";
-            else if (order.delivered)
-                status = "Delivered";
-            else if (order.lateDelivery)
-                status = "Late";
-            else
-                status = "Not assigned";
-
-            return status;
-        }
 
        
     }

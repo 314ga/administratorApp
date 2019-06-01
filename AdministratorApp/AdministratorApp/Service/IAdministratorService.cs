@@ -10,10 +10,12 @@ namespace AdministratorApp.Service
     public interface IAdministratorService
     {
         OrderList GetOrdersList();
+        Order GetOrderById(string id);
         OrderList GetAssignedOrders();
         OrderList GetUnassignedOrders();
         ClientList GetContractors();
         ClientList GetClients();
+        AbstractClient GetClientById(string id);
         ClientList GetCustomers();
         void UpdateOrder(Order order);
         void DeleteOrder(Order order);
