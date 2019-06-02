@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,18 @@ namespace AdministratorApp
 {
     public partial class OrderViewForm : Form
     {
-        IAdministratorService administratorService = new AdministratorService();
+        private IAdministratorService administratorService = new AdministratorService();
+        private string orderID = "0";
         public OrderViewForm()
         {
             InitializeComponent();
         }
         #region getters, setters
+
+        public void setOrderID(string id)
+        {
+            orderID = id;
+        }
 
         public string PickStreetField
         {
@@ -92,6 +99,12 @@ namespace AdministratorApp
             set { containerSize.Text = value; }
 
         }
+        public string Description
+        {
+            get { return description.Text; }
+            set { description.Text = value; }
+
+        }
         public Boolean avaitingPickUp
         {
             get { return avaitingPickCheck.Checked; }
@@ -114,7 +127,14 @@ namespace AdministratorApp
             get { return deliveredCheck.Checked; }
             set { deliveredCheck.Checked = value; }
         }
-
+        public void SetPickUpPicker(string date)
+        {
+            pickUpPicker.Value = DateTime.ParseExact(date, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+        }
+        public void SetDropOffPicker(string date)
+        {
+            dropOffPicker.Value = DateTime.ParseExact(date, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+        }
         #endregion
 
    
@@ -203,9 +223,64 @@ namespace AdministratorApp
                 state.ForeColor = Color.Silver;
             }
         }
+
+
         #endregion
 
+        private void saveChanges_Click(object sender, EventArgs e)
+        {
+            if (city.Text.Equals("") || state.Text.Equals("") || street.Text.Equals("")
+                || postcode.Text.Equals("") ||dropCity.Text.Equals("") || dropState.Text.Equals("") || dropStreet.Text.Equals("")
+                || dropPostcode.Text.Equals("") || Price.Equals("")
+                || weight.Equals("Email") ||containerSize.Equals("Tel. number"))
+            {
+                MessageBox.Show("Wrong input", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
 
-       
+                Order order = new Order();
+                Address pickUpAddress = new Address();
+                Address dropOffAddress = new Address();
+                order.orderNumber = orderID;
+                order.awaitingPickUp = avaitingPickCheck.Checked;
+                order.pickedUp = pickedUpCheck.Checked;
+                order.lateDelivery = lateDeliveryCheck.Checked;
+                order.delivered = deliveredCheck.Checked;
+                order.contentDescription = description.Text;
+                order.price = float.Parse(Price.Text);
+                order.containerSize = containerSize.Text;
+                order.size = Size.Text;
+                order.weight = float.Parse(weight.Text);
+                order.containerSize = containerSize.Text;
+                pickUpAddress.city = city.Text;
+                pickUpAddress.zipCode = postcode.Text;
+                pickUpAddress.country = state.Text;
+                pickUpAddress.street = street.Text;
+                order.pickUpAddress = pickUpAddress;
+                dropOffAddress.city = dropCity.Text;
+                dropOffAddress.zipCode = dropPostcode.Text;
+                dropOffAddress.country = dropState.Text;
+                dropOffAddress.street = dropStreet.Text;
+                order.dropOffAddress = dropOffAddress;
+                order.dropOffDeadline = dropOffPicker.Value.ToString("dd-MM-yyyy HH:mm:ss");
+                order.pickUpDeadline = pickUpPicker.Value.ToString("dd-MM-yyyy HH:mm:ss");
+             
+                if (administratorService.UpdateOrder(order))
+                {
+
+                    this.Close();
+                    MessageBox.Show("Order succesfully change");
+                }
+                else
+                {
+                    MessageBox.Show("Error changing user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+
+
+        }
     }
+    
 }

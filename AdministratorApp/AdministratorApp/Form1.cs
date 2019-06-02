@@ -111,11 +111,6 @@ namespace AdministratorApp
             else
                 AllClients.Checked = true;
 
-            foreach (ListViewItem item in clientListView.Items)
-            {
-                item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
-            }
-
         }
 
         private void allOrders_Enter(object sender, EventArgs e)
@@ -127,10 +122,16 @@ namespace AdministratorApp
             }
             else
                 allRadioBtn.Checked = true;
-           
+
+            foreach (ListViewItem item in clientListView.Items)
+            {
+                item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
+            }
         }
 
         #region update listViews private methods
+
+
         private void updateListView()
         {
             orderListView.Items.Clear();
@@ -139,6 +140,7 @@ namespace AdministratorApp
             {
                 orderListView.Items.Add(new ListViewItem(order));
             }
+            paintOrderRows();
         }
 
         private void updateCustomerView()
@@ -149,21 +151,27 @@ namespace AdministratorApp
             {
                 clientListView.Items.Add(new ListViewItem(client));
             }
+            paintClientRows();
         }
+
+
         #endregion
 
 
         private string ConstructOrderString(Order order)
         {
-            string result = "Created by: " + order.companyID + Environment.NewLine +
+            string result = "Order number: " + order.orderNumber + Environment.NewLine +
                 "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine +
-                "Created by: " + order.companyID + Environment.NewLine;
+                "Status: " + order.getStatus() + Environment.NewLine +
+                "Responsible company: " + order.responsibleCompany + Environment.NewLine +
+                "Price: " + order.price + " €" + Environment.NewLine +
+                "Package size: " + order.size + Environment.NewLine +
+                "Weight: " + order.weight + " kg" + Environment.NewLine +
+                "Pick up address: " + order.pickUpAddress + Environment.NewLine +
+                "Drop off address: " + order.dropOffAddress + Environment.NewLine +
+                "Description: " + order.contentDescription + Environment.NewLine +
+                "Container size: " + order.containerSize + Environment.NewLine +
+                "Distance: " + order.distance + " km";
             return result;
 
 
@@ -212,7 +220,36 @@ namespace AdministratorApp
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-           
+            if (orderListView.SelectedItems.Count > 0)
+            {
+                OrderViewForm editOrder = new OrderViewForm();
+                ListViewItem item = orderListView.SelectedItems[0];
+                Order order = administratorService.GetOrderById(item.SubItems[0].Text);
+                Address pickUpAddress = order.pickUpAddress;
+                Address dropOffAddress = order.dropOffAddress;
+                editOrder.avaitingPickUp = order.awaitingPickUp;
+                editOrder.PickedUp = order.pickedUp;
+                editOrder.LateDelivery = order.lateDelivery;
+                editOrder.Delivered = order.delivered;
+                editOrder.Description = order.contentDescription;
+                editOrder.PriceField = order.price.ToString();
+                editOrder.ContainerSize = order.containerSize;
+                editOrder.PackageSizeField = order.size;
+                editOrder.Weight = order.weight.ToString();
+                editOrder.ContainerSize = order.containerSize;
+                editOrder.PickCityField = pickUpAddress.city;
+                editOrder.PickPostcodeField = pickUpAddress.zipCode;
+                editOrder.PickStateFeild = pickUpAddress.country;
+                editOrder.PickStreetField = pickUpAddress.street;
+                editOrder.DropCityField = dropOffAddress.city;
+                editOrder.DropPostcodeField = dropOffAddress.zipCode;
+                editOrder.DropStateFeild = dropOffAddress.country;
+                editOrder.DropStreetField = dropOffAddress.street;
+                editOrder.SetDropOffPicker(order.dropOffDeadline);
+                editOrder.SetPickUpPicker(order.pickUpDeadline);
+                editOrder.setOrderID(item.SubItems[0].Text);
+                editOrder.ShowDialog();
+            }
         }
 
         private void EditClient_Click(object sender, EventArgs e)
@@ -285,6 +322,85 @@ namespace AdministratorApp
 
             else
                 AllClients.Checked = true;
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            if (allRadioBtn.Checked)
+            {
+                orderList = administratorService.GetOrdersList();
+                updateListView();
+            }
+            else
+                allRadioBtn.Checked = true;
+
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (orderListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = orderListView.SelectedItems[0];
+                Order order = new Order();
+                order.orderNumber = item.SubItems[0].Text;
+                if (administratorService.DeleteOrder(order))
+                {
+                    MessageBox.Show("Order succesfully deleted");
+                    if (allRadioBtn.Checked)
+                    {
+                        orderList = administratorService.GetOrdersList();
+                        updateListView();
+                    }
+                    else
+                        allRadioBtn.Checked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Error deleting order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void DeadlineFIlter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DeadlineFIlter.Checked == true)
+            {
+                orderList = administratorService.GetAllOrdersOrderByDeadline();
+                updateListView();
+            }
+        }
+
+        private void CustomerFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomerButton.Checked)
+            {
+                orderList = administratorService.GetOrdersList();
+                updateListView();
+            }
+        }
+
+        private void StatusFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            if (StatusFilter.Checked)
+            {
+                orderList = administratorService.GetOrdersByStatus();
+                updateListView();
+            }
+        }
+
+        private void paintClientRows()
+        {
+            foreach (ListViewItem item in clientListView.Items)
+            {
+                item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
+            }
+        }
+        private void paintOrderRows()
+        {
+            foreach (ListViewItem item in orderListView.Items)
+            {
+                item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
+            }
         }
     }
 }

@@ -34,19 +34,19 @@ namespace AdministratorApp
         {
             this.NavBar = new System.Windows.Forms.TabControl();
             this.allOrders = new System.Windows.Forms.TabPage();
-            this.RefreshButton = new System.Windows.Forms.Button();
             this.CustomerFilter = new System.Windows.Forms.RadioButton();
-            this.DeadlineFIlter = new System.Windows.Forms.RadioButton();
             this.StatusFilter = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.unassignedRadioBtn = new System.Windows.Forms.RadioButton();
-            this.assignedRadioBtn = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.allRadioBtn = new System.Windows.Forms.RadioButton();
+            this.assignedRadioBtn = new System.Windows.Forms.RadioButton();
+            this.unassignedRadioBtn = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DeadlineFIlter = new System.Windows.Forms.RadioButton();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.allInfoBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.orderListView = new System.Windows.Forms.ListView();
             this.orderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.created = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +56,7 @@ namespace AdministratorApp
             this.dropOffDead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clientTab = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.clientInfo = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.ContractorButton = new System.Windows.Forms.RadioButton();
@@ -75,9 +76,10 @@ namespace AdministratorApp
             this.orderNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.createdBy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickUpAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.NavBar.SuspendLayout();
             this.allOrders.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.clientTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,19 +99,12 @@ namespace AdministratorApp
             // 
             this.allOrders.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
             this.allOrders.BackColor = System.Drawing.Color.Blue;
+            this.allOrders.Controls.Add(this.groupBox1);
+            this.allOrders.Controls.Add(this.label5);
             this.allOrders.Controls.Add(this.RefreshButton);
-            this.allOrders.Controls.Add(this.CustomerFilter);
-            this.allOrders.Controls.Add(this.DeadlineFIlter);
-            this.allOrders.Controls.Add(this.StatusFilter);
-            this.allOrders.Controls.Add(this.label2);
-            this.allOrders.Controls.Add(this.unassignedRadioBtn);
-            this.allOrders.Controls.Add(this.assignedRadioBtn);
-            this.allOrders.Controls.Add(this.allRadioBtn);
-            this.allOrders.Controls.Add(this.label1);
             this.allOrders.Controls.Add(this.allInfoBtn);
             this.allOrders.Controls.Add(this.editBtn);
             this.allOrders.Controls.Add(this.deleteBtn);
-            this.allOrders.Controls.Add(this.textBox1);
             this.allOrders.Controls.Add(this.orderListView);
             this.allOrders.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.allOrders.ForeColor = System.Drawing.Color.White;
@@ -122,6 +117,125 @@ namespace AdministratorApp
             this.allOrders.UseVisualStyleBackColor = true;
             this.allOrders.Enter += new System.EventHandler(this.allOrders_Enter);
             // 
+            // CustomerFilter
+            // 
+            this.CustomerFilter.BackColor = System.Drawing.Color.SlateGray;
+            this.CustomerFilter.Checked = true;
+            this.CustomerFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CustomerFilter.Location = new System.Drawing.Point(25, 186);
+            this.CustomerFilter.Name = "CustomerFilter";
+            this.CustomerFilter.Size = new System.Drawing.Size(115, 29);
+            this.CustomerFilter.TabIndex = 15;
+            this.CustomerFilter.TabStop = true;
+            this.CustomerFilter.Text = "Customer";
+            this.CustomerFilter.UseVisualStyleBackColor = false;
+            this.CustomerFilter.CheckedChanged += new System.EventHandler(this.CustomerFilter_CheckedChanged);
+            // 
+            // StatusFilter
+            // 
+            this.StatusFilter.BackColor = System.Drawing.Color.SlateGray;
+            this.StatusFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.StatusFilter.Location = new System.Drawing.Point(26, 255);
+            this.StatusFilter.Name = "StatusFilter";
+            this.StatusFilter.Size = new System.Drawing.Size(115, 28);
+            this.StatusFilter.TabIndex = 13;
+            this.StatusFilter.Text = "Status";
+            this.StatusFilter.UseVisualStyleBackColor = false;
+            this.StatusFilter.CheckedChanged += new System.EventHandler(this.StatusFilter_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Controls.Add(this.CustomerFilter);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.allRadioBtn);
+            this.groupBox1.Controls.Add(this.StatusFilter);
+            this.groupBox1.Controls.Add(this.assignedRadioBtn);
+            this.groupBox1.Controls.Add(this.unassignedRadioBtn);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.DeadlineFIlter);
+            this.groupBox1.Location = new System.Drawing.Point(990, 109);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(160, 298);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            // 
+            // allRadioBtn
+            // 
+            this.allRadioBtn.BackColor = System.Drawing.Color.SlateGray;
+            this.allRadioBtn.Checked = true;
+            this.allRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.allRadioBtn.Location = new System.Drawing.Point(23, 29);
+            this.allRadioBtn.Name = "allRadioBtn";
+            this.allRadioBtn.Size = new System.Drawing.Size(115, 28);
+            this.allRadioBtn.TabIndex = 9;
+            this.allRadioBtn.TabStop = true;
+            this.allRadioBtn.Text = "All";
+            this.allRadioBtn.UseVisualStyleBackColor = false;
+            this.allRadioBtn.CheckedChanged += new System.EventHandler(this.allRadioBtn_CheckedChanged);
+            // 
+            // assignedRadioBtn
+            // 
+            this.assignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
+            this.assignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.assignedRadioBtn.Location = new System.Drawing.Point(23, 63);
+            this.assignedRadioBtn.Name = "assignedRadioBtn";
+            this.assignedRadioBtn.Size = new System.Drawing.Size(115, 28);
+            this.assignedRadioBtn.TabIndex = 10;
+            this.assignedRadioBtn.TabStop = true;
+            this.assignedRadioBtn.Text = "Assigned";
+            this.assignedRadioBtn.UseVisualStyleBackColor = false;
+            this.assignedRadioBtn.CheckedChanged += new System.EventHandler(this.assignedRadioBtn_CheckedChanged);
+            // 
+            // unassignedRadioBtn
+            // 
+            this.unassignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
+            this.unassignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.unassignedRadioBtn.Location = new System.Drawing.Point(23, 97);
+            this.unassignedRadioBtn.Name = "unassignedRadioBtn";
+            this.unassignedRadioBtn.Size = new System.Drawing.Size(115, 29);
+            this.unassignedRadioBtn.TabIndex = 11;
+            this.unassignedRadioBtn.TabStop = true;
+            this.unassignedRadioBtn.Text = "Unassigned";
+            this.unassignedRadioBtn.UseVisualStyleBackColor = false;
+            this.unassignedRadioBtn.CheckedChanged += new System.EventHandler(this.unassignedRadioBtn_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(23, -10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 50);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Order type";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(994, 410);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(156, 30);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Manage order ";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DeadlineFIlter
+            // 
+            this.DeadlineFIlter.BackColor = System.Drawing.Color.SlateGray;
+            this.DeadlineFIlter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.DeadlineFIlter.Location = new System.Drawing.Point(26, 221);
+            this.DeadlineFIlter.Name = "DeadlineFIlter";
+            this.DeadlineFIlter.Size = new System.Drawing.Size(115, 28);
+            this.DeadlineFIlter.TabIndex = 14;
+            this.DeadlineFIlter.Text = "Deadline";
+            this.DeadlineFIlter.UseVisualStyleBackColor = false;
+            this.DeadlineFIlter.CheckedChanged += new System.EventHandler(this.DeadlineFIlter_CheckedChanged);
+            // 
             // RefreshButton
             // 
             this.RefreshButton.BackColor = System.Drawing.Color.GreenYellow;
@@ -131,113 +245,13 @@ namespace AdministratorApp
             this.RefreshButton.TabIndex = 16;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = false;
-            // 
-            // CustomerFilter
-            // 
-            this.CustomerFilter.BackColor = System.Drawing.Color.SlateGray;
-            this.CustomerFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.CustomerFilter.Location = new System.Drawing.Point(1016, 337);
-            this.CustomerFilter.Name = "CustomerFilter";
-            this.CustomerFilter.Size = new System.Drawing.Size(115, 29);
-            this.CustomerFilter.TabIndex = 15;
-            this.CustomerFilter.TabStop = true;
-            this.CustomerFilter.Text = "Customer";
-            this.CustomerFilter.UseVisualStyleBackColor = false;
-            // 
-            // DeadlineFIlter
-            // 
-            this.DeadlineFIlter.BackColor = System.Drawing.Color.SlateGray;
-            this.DeadlineFIlter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.DeadlineFIlter.Location = new System.Drawing.Point(1016, 303);
-            this.DeadlineFIlter.Name = "DeadlineFIlter";
-            this.DeadlineFIlter.Size = new System.Drawing.Size(115, 28);
-            this.DeadlineFIlter.TabIndex = 14;
-            this.DeadlineFIlter.TabStop = true;
-            this.DeadlineFIlter.Text = "Deadline";
-            this.DeadlineFIlter.UseVisualStyleBackColor = false;
-            // 
-            // StatusFilter
-            // 
-            this.StatusFilter.BackColor = System.Drawing.Color.SlateGray;
-            this.StatusFilter.Checked = true;
-            this.StatusFilter.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.StatusFilter.Location = new System.Drawing.Point(1016, 269);
-            this.StatusFilter.Name = "StatusFilter";
-            this.StatusFilter.Size = new System.Drawing.Size(115, 28);
-            this.StatusFilter.TabIndex = 13;
-            this.StatusFilter.TabStop = true;
-            this.StatusFilter.Text = "Status";
-            this.StatusFilter.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(1017, 228);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 50);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Order by";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // unassignedRadioBtn
-            // 
-            this.unassignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
-            this.unassignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.unassignedRadioBtn.Location = new System.Drawing.Point(1017, 190);
-            this.unassignedRadioBtn.Name = "unassignedRadioBtn";
-            this.unassignedRadioBtn.Size = new System.Drawing.Size(115, 29);
-            this.unassignedRadioBtn.TabIndex = 11;
-            this.unassignedRadioBtn.TabStop = true;
-            this.unassignedRadioBtn.Text = "Unassigned";
-            this.unassignedRadioBtn.UseVisualStyleBackColor = false;
-            this.unassignedRadioBtn.CheckedChanged += new System.EventHandler(this.unassignedRadioBtn_CheckedChanged);
-            // 
-            // assignedRadioBtn
-            // 
-            this.assignedRadioBtn.BackColor = System.Drawing.Color.SlateGray;
-            this.assignedRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.assignedRadioBtn.Location = new System.Drawing.Point(1017, 156);
-            this.assignedRadioBtn.Name = "assignedRadioBtn";
-            this.assignedRadioBtn.Size = new System.Drawing.Size(115, 28);
-            this.assignedRadioBtn.TabIndex = 10;
-            this.assignedRadioBtn.TabStop = true;
-            this.assignedRadioBtn.Text = "Assigned";
-            this.assignedRadioBtn.UseVisualStyleBackColor = false;
-            this.assignedRadioBtn.CheckedChanged += new System.EventHandler(this.assignedRadioBtn_CheckedChanged);
-            // 
-            // allRadioBtn
-            // 
-            this.allRadioBtn.BackColor = System.Drawing.Color.SlateGray;
-            this.allRadioBtn.Checked = true;
-            this.allRadioBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.allRadioBtn.Location = new System.Drawing.Point(1017, 122);
-            this.allRadioBtn.Name = "allRadioBtn";
-            this.allRadioBtn.Size = new System.Drawing.Size(115, 28);
-            this.allRadioBtn.TabIndex = 9;
-            this.allRadioBtn.TabStop = true;
-            this.allRadioBtn.Text = "All";
-            this.allRadioBtn.UseVisualStyleBackColor = false;
-            this.allRadioBtn.CheckedChanged += new System.EventHandler(this.allRadioBtn_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(1017, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 50);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Order type";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // allInfoBtn
             // 
             this.allInfoBtn.BackColor = System.Drawing.Color.Orange;
             this.allInfoBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.allInfoBtn.Location = new System.Drawing.Point(1016, 409);
+            this.allInfoBtn.Location = new System.Drawing.Point(1016, 442);
             this.allInfoBtn.Name = "allInfoBtn";
             this.allInfoBtn.Size = new System.Drawing.Size(115, 32);
             this.allInfoBtn.TabIndex = 7;
@@ -249,7 +263,7 @@ namespace AdministratorApp
             // 
             this.editBtn.BackColor = System.Drawing.Color.Orange;
             this.editBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editBtn.Location = new System.Drawing.Point(1016, 448);
+            this.editBtn.Location = new System.Drawing.Point(1016, 481);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(115, 32);
             this.editBtn.TabIndex = 5;
@@ -260,19 +274,13 @@ namespace AdministratorApp
             // deleteBtn
             // 
             this.deleteBtn.BackColor = System.Drawing.Color.Orange;
-            this.deleteBtn.Location = new System.Drawing.Point(1017, 487);
+            this.deleteBtn.Location = new System.Drawing.Point(1017, 520);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(115, 31);
             this.deleteBtn.TabIndex = 3;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(20, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(968, 45);
-            this.textBox1.TabIndex = 1;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // orderListView
             // 
@@ -290,9 +298,9 @@ namespace AdministratorApp
             this.orderListView.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold);
             this.orderListView.FullRowSelect = true;
             this.orderListView.GridLines = true;
-            this.orderListView.Location = new System.Drawing.Point(20, 68);
+            this.orderListView.Location = new System.Drawing.Point(7, 6);
             this.orderListView.Name = "orderListView";
-            this.orderListView.Size = new System.Drawing.Size(968, 491);
+            this.orderListView.Size = new System.Drawing.Size(981, 553);
             this.orderListView.TabIndex = 0;
             this.orderListView.UseCompatibleStateImageBehavior = false;
             this.orderListView.View = System.Windows.Forms.View.Details;
@@ -354,6 +362,18 @@ namespace AdministratorApp
             this.clientTab.Text = "Clients";
             this.clientTab.UseVisualStyleBackColor = true;
             this.clientTab.Enter += new System.EventHandler(this.clientTab_Enter);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(997, 323);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 27);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Manage client";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // clientInfo
             // 
@@ -532,17 +552,17 @@ namespace AdministratorApp
             // 
             this.pickUpAddress.Text = "Pick up address";
             // 
-            // label4
+            // label2
             // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(997, 323);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 27);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Manage client";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(29, 147);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 50);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Order by";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // form1
             // 
@@ -556,7 +576,7 @@ namespace AdministratorApp
             this.Load += new System.EventHandler(this.Form1_Load);
             this.NavBar.ResumeLayout(false);
             this.allOrders.ResumeLayout(false);
-            this.allOrders.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.clientTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -570,7 +590,6 @@ namespace AdministratorApp
         private ColumnHeader orderNumber;
         private ColumnHeader createdBy;
         private ColumnHeader pickUpAddress;
-        private TextBox textBox1;
         private ColumnHeader orderID;
         private ColumnHeader created;
         private ColumnHeader pickUpAdd;
@@ -586,10 +605,6 @@ namespace AdministratorApp
         private RadioButton allRadioBtn;
         private RadioButton unassignedRadioBtn;
         private RadioButton assignedRadioBtn;
-        private RadioButton CustomerFilter;
-        private RadioButton DeadlineFIlter;
-        private RadioButton StatusFilter;
-        private Label label2;
         private Button RefreshButton;
         private ListView clientListView;
         private ColumnHeader CustomerID;
@@ -608,6 +623,12 @@ namespace AdministratorApp
         private Button clientInfo;
         private ColumnHeader clietType;
         private Label label4;
+        private Label label5;
+        private GroupBox groupBox1;
+        private RadioButton CustomerFilter;
+        private RadioButton StatusFilter;
+        private RadioButton DeadlineFIlter;
+        private Label label2;
     }
 }
 

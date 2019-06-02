@@ -224,7 +224,7 @@ namespace AdministratorApp.Service
             return obj;
         }
 
-        public void UpdateOrder(Order order) {
+        public Boolean UpdateOrder(Order order) {
             //socket connection
             Setup();
 
@@ -232,10 +232,15 @@ namespace AdministratorApp.Service
             Request.obj = order;
             string orderAsJson = JsonConvert.SerializeObject(Request);
             SendMessage(orderAsJson);
+
+            string JsonString = ReadResultset();
+            Boolean response = false;
+            if (JsonString.Equals("success")) { response = true; }
             clientSocket.Close();
+            return response;
         }
 
-        public void DeleteOrder(Order order) {
+        public Boolean DeleteOrder(Order order) {
             //socket connection
             Setup();
 
@@ -243,7 +248,12 @@ namespace AdministratorApp.Service
             Request.obj = order;
             string orderAsJson = JsonConvert.SerializeObject(Request);
             SendMessage(orderAsJson);
+
+            string JsonString = ReadResultset();
+            Boolean response = false;
+            if (JsonString.Equals("success")) { response = true; }
             clientSocket.Close();
+            return response;
         }
 
         public Boolean AddClient(AbstractClient client)
@@ -298,6 +308,57 @@ namespace AdministratorApp.Service
             return response;
         }
 
+        public OrderList GetOrdersByStatus()
+        {
+            Setup();
+            //create request
+            Request.action = SocketRequest.ACTION.GET_ORDERS_GROUPBY_STATUS;
+
+            //seriliazing to JSON
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            //send request 
+            SendMessage(requestAsJSON);
+
+            //read resultset
+            string JsonString = ReadResultset();
+
+            OrderList obj = new OrderList();
+            clientSocket.NoDelay = true;
+            //deseriliasing 
+            obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
+
+
+            clientSocket.Close();
+
+            return obj;
+        }
+
+        public OrderList GetAllOrdersOrderByDeadline()
+        {
+            Setup();
+            //create request
+            Request.action = SocketRequest.ACTION.GET_ORDERS_GROUPBY_DEADLINE;
+
+            //seriliazing to JSON
+            string requestAsJSON = JsonConvert.SerializeObject(Request);
+
+            //send request 
+            SendMessage(requestAsJSON);
+
+            //read resultset
+            string JsonString = ReadResultset();
+
+            OrderList obj = new OrderList();
+            clientSocket.NoDelay = true;
+            //deseriliasing 
+            obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
+
+
+            clientSocket.Close();
+
+            return obj;
+        }
     }
 }
 

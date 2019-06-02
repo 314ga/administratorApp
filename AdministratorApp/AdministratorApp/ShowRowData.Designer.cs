@@ -57,7 +57,7 @@
             // closeBtn
             // 
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.closeBtn.Location = new System.Drawing.Point(12, 265);
+            this.closeBtn.Location = new System.Drawing.Point(12, 414);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBtn.TabIndex = 2;
@@ -69,7 +69,7 @@
             this.AcceptButton = this.closeBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 302);
+            this.ClientSize = new System.Drawing.Size(482, 456);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.clientInfoTxtBox);
