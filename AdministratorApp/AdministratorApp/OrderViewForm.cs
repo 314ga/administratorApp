@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Service;
+using AdministratorApp.Controller;
 namespace AdministratorApp
 {
     public partial class OrderViewForm : Form
     {
-        private IAdministratorService administratorService = new AdministratorService();
+        private IAdministratorController administratorService = new AdministratorController();
         private string orderID = "0";
         public OrderViewForm()
         {

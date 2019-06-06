@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Service;
+using AdministratorApp.Controller;
 namespace AdministratorApp
 {
     public partial class Form2 : Form
     {
         private string clientID = "0"; 
-        private IAdministratorService administratorService = new AdministratorService();
+        private IAdministratorController administratorService = new AdministratorController();
         public Form2()
         {
             InitializeComponent();
@@ -298,6 +298,11 @@ namespace AdministratorApp
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CompanyName_TextChanged(object sender, EventArgs e)
         {
 
         }

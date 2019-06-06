@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Service;
+using AdministratorApp.Controller;
 
 
 namespace AdministratorApp
@@ -19,7 +19,7 @@ namespace AdministratorApp
         private OrderList orderList;
         private ClientList clientList;
         private ListViewItem selectedRow;
-        private AdministratorService administratorService = new AdministratorService();
+        private AdministratorController administratorService = new AdministratorController();
     
         public form1()
         {
@@ -401,6 +401,11 @@ namespace AdministratorApp
             {
                 item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
             }
+        }
+
+        private void orderListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

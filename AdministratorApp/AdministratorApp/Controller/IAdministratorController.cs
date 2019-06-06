@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdministratorApp.Service
+namespace AdministratorApp.Controller
 {
-    public interface IAdministratorService
+    public interface IAdministratorController
     {
         OrderList GetOrdersList();
         OrderList GetOrdersByStatus();

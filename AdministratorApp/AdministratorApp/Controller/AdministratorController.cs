@@ -12,9 +12,9 @@ using Newtonsoft.Json;
 using System.Net;
 
 
-namespace AdministratorApp.Service
+namespace AdministratorApp.Controller
 {
-    public class AdministratorService : IAdministratorService
+    public class AdministratorController : IAdministratorController
     {
         private int Port = 4400;
         IPEndPoint serverAddress;
@@ -23,7 +23,7 @@ namespace AdministratorApp.Service
         SocketRequest Request=new SocketRequest();
         JsonSerializer JsonSerializer = new JsonSerializer();
 
-        public AdministratorService()
+        public AdministratorController()
         {
            
         }
@@ -58,8 +58,6 @@ namespace AdministratorApp.Service
             string rcv = Encoding.ASCII.GetString(rcvBytes);
 
             return rcv;
-
-            //missing JSON deserializing
         }
 
         public void SendMessage(string Message)
@@ -73,8 +71,9 @@ namespace AdministratorApp.Service
 
         public OrderList GetOrdersList()
         {
-
+            //create socket connection
             Setup();
+
             //create request
             Request.action = SocketRequest.ACTION.GET_ORDERS;
 
@@ -88,11 +87,10 @@ namespace AdministratorApp.Service
             string JsonString = ReadResultset();
 
             OrderList obj = new OrderList();
-            clientSocket.NoDelay=true;
+            
             //deseriliasing 
             obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
 
-          
             clientSocket.Close();
 
             return obj;
