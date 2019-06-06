@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Controller;
+using AdministratorApp.Service;
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class creates create client dialog window
+    /// </summary>
     public partial class Form2 : Form
     {
         private string clientID = "0"; 
-        private IAdministratorController administratorService = new AdministratorController();
+        private IAdministratorService administratorService = new AdministratorService();
         public Form2()
         {
             InitializeComponent();
@@ -298,11 +301,6 @@ namespace AdministratorApp
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CompanyName_TextChanged(object sender, EventArgs e)
         {
 
         }

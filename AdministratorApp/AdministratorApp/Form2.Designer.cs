@@ -45,10 +45,10 @@
             // 
             this.clientConfirmBtn.BackColor = System.Drawing.Color.Chartreuse;
             this.clientConfirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.clientConfirmBtn.Location = new System.Drawing.Point(73, 454);
-            this.clientConfirmBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clientConfirmBtn.Location = new System.Drawing.Point(55, 369);
+            this.clientConfirmBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.clientConfirmBtn.Name = "clientConfirmBtn";
-            this.clientConfirmBtn.Size = new System.Drawing.Size(276, 43);
+            this.clientConfirmBtn.Size = new System.Drawing.Size(207, 35);
             this.clientConfirmBtn.TabIndex = 7;
             this.clientConfirmBtn.Text = "Create client";
             this.clientConfirmBtn.UseVisualStyleBackColor = false;
@@ -58,9 +58,10 @@
             // 
             this.showClientTitle.AutoSize = true;
             this.showClientTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
-            this.showClientTitle.Location = new System.Drawing.Point(100, 31);
+            this.showClientTitle.Location = new System.Drawing.Point(75, 25);
+            this.showClientTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.showClientTitle.Name = "showClientTitle";
-            this.showClientTitle.Size = new System.Drawing.Size(223, 29);
+            this.showClientTitle.Size = new System.Drawing.Size(178, 24);
             this.showClientTitle.TabIndex = 8;
             this.showClientTitle.Text = "Create new client ";
             // 
@@ -68,10 +69,10 @@
             // 
             this.TelNo.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.TelNo.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.TelNo.Location = new System.Drawing.Point(73, 133);
-            this.TelNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TelNo.Location = new System.Drawing.Point(55, 108);
+            this.TelNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TelNo.Name = "TelNo";
-            this.TelNo.Size = new System.Drawing.Size(279, 35);
+            this.TelNo.Size = new System.Drawing.Size(210, 30);
             this.TelNo.TabIndex = 9;
             this.TelNo.Text = "Tel. number";
             this.TelNo.Enter += new System.EventHandler(this.TelNo_Enter);
@@ -81,10 +82,10 @@
             // 
             this.Email.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Email.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.Email.Location = new System.Drawing.Point(75, 190);
-            this.Email.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Email.Location = new System.Drawing.Point(56, 154);
+            this.Email.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Email.Name = "Email";
-            this.Email.Size = new System.Drawing.Size(277, 35);
+            this.Email.Size = new System.Drawing.Size(209, 30);
             this.Email.TabIndex = 10;
             this.Email.Text = "Email";
             this.Email.Enter += new System.EventHandler(this.Email_Enter);
@@ -94,13 +95,12 @@
             // 
             this.CompanyName.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.CompanyName.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.CompanyName.Location = new System.Drawing.Point(73, 79);
-            this.CompanyName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CompanyName.Location = new System.Drawing.Point(55, 64);
+            this.CompanyName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CompanyName.Name = "CompanyName";
-            this.CompanyName.Size = new System.Drawing.Size(279, 35);
+            this.CompanyName.Size = new System.Drawing.Size(210, 30);
             this.CompanyName.TabIndex = 11;
             this.CompanyName.Text = "Company name";
-            this.CompanyName.TextChanged += new System.EventHandler(this.CompanyName_TextChanged);
             this.CompanyName.Enter += new System.EventHandler(this.CompanyName_Enter);
             this.CompanyName.Leave += new System.EventHandler(this.CompanyName_Leave);
             // 
@@ -108,10 +108,10 @@
             // 
             this.street.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.street.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.street.Location = new System.Drawing.Point(73, 242);
-            this.street.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.street.Location = new System.Drawing.Point(55, 197);
+            this.street.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.street.Name = "street";
-            this.street.Size = new System.Drawing.Size(277, 35);
+            this.street.Size = new System.Drawing.Size(209, 30);
             this.street.TabIndex = 13;
             this.street.Text = "Street";
             this.street.Enter += new System.EventHandler(this.street_Enter);
@@ -121,10 +121,10 @@
             // 
             this.postcode.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.postcode.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.postcode.Location = new System.Drawing.Point(73, 294);
-            this.postcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.postcode.Location = new System.Drawing.Point(55, 239);
+            this.postcode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.postcode.Name = "postcode";
-            this.postcode.Size = new System.Drawing.Size(91, 35);
+            this.postcode.Size = new System.Drawing.Size(69, 30);
             this.postcode.TabIndex = 14;
             this.postcode.Text = "Postcode";
             this.postcode.Enter += new System.EventHandler(this.postcode_Enter);
@@ -134,10 +134,10 @@
             // 
             this.city.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.city.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.city.Location = new System.Drawing.Point(171, 294);
-            this.city.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.city.Location = new System.Drawing.Point(128, 239);
+            this.city.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.city.Name = "city";
-            this.city.Size = new System.Drawing.Size(181, 35);
+            this.city.Size = new System.Drawing.Size(137, 30);
             this.city.TabIndex = 15;
             this.city.Text = "City";
             this.city.Enter += new System.EventHandler(this.city_Enter);
@@ -147,10 +147,10 @@
             // 
             this.state.Font = new System.Drawing.Font("Lucida Sans Unicode", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.state.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.state.Location = new System.Drawing.Point(75, 348);
-            this.state.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.state.Location = new System.Drawing.Point(56, 283);
+            this.state.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(277, 35);
+            this.state.Size = new System.Drawing.Size(209, 30);
             this.state.TabIndex = 16;
             this.state.Text = "State";
             this.state.Enter += new System.EventHandler(this.state_Enter);
@@ -159,10 +159,10 @@
             // contractor
             // 
             this.contractor.AutoSize = true;
-            this.contractor.Location = new System.Drawing.Point(255, 399);
-            this.contractor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.contractor.Location = new System.Drawing.Point(191, 324);
+            this.contractor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.contractor.Name = "contractor";
-            this.contractor.Size = new System.Drawing.Size(95, 21);
+            this.contractor.Size = new System.Drawing.Size(74, 17);
             this.contractor.TabIndex = 17;
             this.contractor.TabStop = true;
             this.contractor.Text = "Contractor";
@@ -171,10 +171,10 @@
             // customer
             // 
             this.customer.AutoSize = true;
-            this.customer.Location = new System.Drawing.Point(75, 399);
-            this.customer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.customer.Location = new System.Drawing.Point(56, 324);
+            this.customer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.customer.Name = "customer";
-            this.customer.Size = new System.Drawing.Size(89, 21);
+            this.customer.Size = new System.Drawing.Size(69, 17);
             this.customer.TabIndex = 18;
             this.customer.TabStop = true;
             this.customer.Text = "Customer";
@@ -183,9 +183,9 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 564);
+            this.ClientSize = new System.Drawing.Size(326, 458);
             this.Controls.Add(this.customer);
             this.Controls.Add(this.contractor);
             this.Controls.Add(this.state);
@@ -197,7 +197,7 @@
             this.Controls.Add(this.TelNo);
             this.Controls.Add(this.showClientTitle);
             this.Controls.Add(this.clientConfirmBtn);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);

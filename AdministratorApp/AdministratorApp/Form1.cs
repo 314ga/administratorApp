@@ -8,18 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Controller;
+using AdministratorApp.Service;
 
 
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class creates main view for the administrator application
+    /// </summary>
+    /// <remarks>
+    /// responsible for logic after clicking on the buttons
+    /// constructing string for client and order information
+    /// painting list row colors
+    /// </remarks>
     public partial class form1 : Form
     {
         private ListAdapter listAdapter = new ListAdapter();
         private OrderList orderList;
         private ClientList clientList;
         private ListViewItem selectedRow;
-        private AdministratorController administratorService = new AdministratorController();
+        private AdministratorService administratorService = new AdministratorService();
     
         public form1()
         {
@@ -32,7 +40,11 @@ namespace AdministratorApp
 
         }
 
+
         #region orders radio buttons
+        /// <summary>
+        /// get all orders from the database after checking all check button
+        /// </summary>
         private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             // get all orders from database
@@ -44,6 +56,9 @@ namespace AdministratorApp
                 
         }
 
+        /// <summary>
+        /// get all assign orders from the database after checking assigned check button
+        /// </summary>
         private void assignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (assignedRadioBtn.Checked == true)
@@ -53,6 +68,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// get all unassign orders from the database after checking unassigned check button
+        /// </summary>
         private void unassignedRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (unassignedRadioBtn.Checked == true)
@@ -65,6 +83,9 @@ namespace AdministratorApp
         #endregion
 
         #region clients radio buttons
+        /// <summary>
+        /// get all customers from the database after checking customer check button
+        /// </summary>
         private void CustomerButton_CheckedChanged(object sender, EventArgs e)
         {
             if (CustomerButton.Checked == true)
@@ -73,7 +94,9 @@ namespace AdministratorApp
                 updateCustomerView();
             }
         }
-
+        /// <summary>
+        /// get all contractor from the database after checking contractor check button
+        /// </summary>
         private void ContractorButton_CheckedChanged(object sender, EventArgs e)
         {
             if (ContractorButton.Checked == true)
@@ -82,7 +105,9 @@ namespace AdministratorApp
                 updateCustomerView();
             }
         }
-
+        /// <summary>
+        /// get all clients from the database after checking all clients check button
+        /// </summary>
         private void AllClients_CheckedChanged(object sender, EventArgs e)
         {
             if (AllClients.Checked == true)
@@ -93,14 +118,18 @@ namespace AdministratorApp
         }
         #endregion
 
-
+        /// <summary>
+        /// shows dialog after clicking on the ad client
+        /// </summary>
         private void AddClient_Click(object sender, EventArgs e)
         {
             Form2 addClient = new Form2();
             addClient.ShowDialog();
         }
 
-
+        /// <summary>
+        /// getting all clients and updating list view after enter client view tab
+        /// </summary>
         private void clientTab_Enter(object sender, EventArgs e)
         {
             if (AllClients.Checked)
@@ -113,6 +142,9 @@ namespace AdministratorApp
 
         }
 
+        /// <summary>
+        /// getting all orders and updating list view after enter order view tab
+        /// </summary>
         private void allOrders_Enter(object sender, EventArgs e)
         {
             if (allRadioBtn.Checked)
@@ -131,7 +163,9 @@ namespace AdministratorApp
 
         #region update listViews private methods
 
-
+        /// <summary>
+        /// update order list view
+        /// </summary>
         private void updateListView()
         {
             orderListView.Items.Clear();
@@ -142,7 +176,9 @@ namespace AdministratorApp
             }
             paintOrderRows();
         }
-
+        /// <summary>
+        /// update customer list view
+        /// </summary>
         private void updateCustomerView()
         {
             clientListView.Items.Clear();
@@ -157,7 +193,9 @@ namespace AdministratorApp
 
         #endregion
 
-
+        /// <summary>
+        /// costruct string for the dialog from order object
+        /// </summary>
         private string ConstructOrderString(Order order)
         {
             string result = "Order number: " + order.orderNumber + Environment.NewLine +
@@ -176,6 +214,10 @@ namespace AdministratorApp
 
 
         }
+
+        /// <summary>
+        /// construct string object from the AbstractClient object
+        /// </summary>
         private string ConstructClientString(AbstractClient client)
         {
             string result = "Created by: " + client.clientId + Environment.NewLine
@@ -190,6 +232,9 @@ namespace AdministratorApp
 
         }
 
+        /// <summary>
+        /// showing dialog window after click on the all information button
+        /// </summary>
         private void allInfoBtn_Click(object sender, EventArgs e)
         {
             if (orderListView.SelectedItems.Count > 0)
@@ -204,6 +249,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// showing dialog window after click on the all information button
+        /// </summary>
         private void clientInfo_Click(object sender, EventArgs e)
         {
             if (clientListView.SelectedItems.Count > 0)
@@ -218,6 +266,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// showing edit dialog window for order after click on the edit button
+        /// </summary>
         private void editBtn_Click(object sender, EventArgs e)
         {
             if (orderListView.SelectedItems.Count > 0)
@@ -252,6 +303,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// showing edit client dialog window after click on the edit button
+        /// </summary>
         private void EditClient_Click(object sender, EventArgs e)
         {
             if (clientListView.SelectedItems.Count > 0)
@@ -281,6 +335,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// delete client from the database after click on the delete button
+        /// </summary>
         private void DeleteClient_Click(object sender, EventArgs e)
         {
             if (clientListView.SelectedItems.Count > 0)
@@ -307,11 +364,10 @@ namespace AdministratorApp
             
         }
 
-        private void clientListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
+        /// <summary>
+        /// refresh client list view after click on the refresh button
+        /// </summary>
         private void SearchButton_Click(object sender, EventArgs e)
         {
             if (AllClients.Checked)
@@ -324,6 +380,9 @@ namespace AdministratorApp
                 AllClients.Checked = true;
         }
 
+        /// <summary>
+        /// refresh order list view after click on the refresh button
+        /// </summary>
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             if (allRadioBtn.Checked)
@@ -336,6 +395,9 @@ namespace AdministratorApp
 
         }
 
+        /// <summary>
+        /// delete order from the database after click on the delete button
+        /// </summary>
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (orderListView.SelectedItems.Count > 0)
@@ -361,6 +423,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// getting order from database ordered by deadline
+        /// </summary>
         private void DeadlineFIlter_CheckedChanged(object sender, EventArgs e)
         {
             if (DeadlineFIlter.Checked == true)
@@ -370,6 +435,9 @@ namespace AdministratorApp
             }
         }
 
+        /// <summary>
+        /// getting order from database ordered by customer
+        /// </summary>
         private void CustomerFilter_CheckedChanged(object sender, EventArgs e)
         {
             if (CustomerButton.Checked)
@@ -379,6 +447,10 @@ namespace AdministratorApp
             }
         }
 
+
+        /// <summary>
+        /// getting order from database ordered by status
+        /// </summary>
         private void StatusFilter_CheckedChanged(object sender, EventArgs e)
         {
             if (StatusFilter.Checked)
@@ -388,6 +460,10 @@ namespace AdministratorApp
             }
         }
 
+
+        /// <summary>
+        /// painitng rows in list view for clients
+        /// </summary>
         private void paintClientRows()
         {
             foreach (ListViewItem item in clientListView.Items)
@@ -395,17 +471,17 @@ namespace AdministratorApp
                 item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
             }
         }
+
+
+        /// <summary>
+        /// painting rows in list view for orders
+        /// </summary>
         private void paintOrderRows()
         {
             foreach (ListViewItem item in orderListView.Items)
             {
                 item.BackColor = item.Index % 2 == 0 ? Color.LightGray : Color.LightBlue;
             }
-        }
-
-        private void orderListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

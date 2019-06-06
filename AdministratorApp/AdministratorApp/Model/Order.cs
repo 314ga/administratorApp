@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 
 namespace AdministratorApp
 {
+    /// <summary>
+    /// Model class for the order
+    /// The class contains getters and setters for all variables which are neccessery for the order.
+    /// </summary>
+    /// <remarks>
+    /// Can set all variables in the class
+    /// Can get data from all variables in the class
+    /// </remarks>
     public class Order
     {
         

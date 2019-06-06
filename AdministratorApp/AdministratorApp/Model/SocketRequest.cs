@@ -8,6 +8,16 @@ using System.Threading.Tasks;
 
 namespace AdministratorApp.Model
 {
+    /// <summary>
+    /// The class is responsible for creating request which is later send to the java
+    /// The class contains enum ACTION for all possible actions and object which will be later send to java
+    /// </summary>
+    /// <remarks>
+    /// Can set ACTION
+    /// Can get ACTION
+    /// Can set object variable
+    /// Can get object variable
+    /// </remarks>
     [Serializable]
     public class SocketRequest
     {

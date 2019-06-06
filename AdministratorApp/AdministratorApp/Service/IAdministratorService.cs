@@ -5,9 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdministratorApp.Controller
+namespace AdministratorApp.Service
 {
-    public interface IAdministratorController
+    /// <summary>
+    /// Interface for Administrator service
+    /// The class contains all methods which have to be implemented in AdministratorService class.
+    /// </summary>
+    public interface IAdministratorService
     {
         OrderList GetOrdersList();
         OrderList GetOrdersByStatus();

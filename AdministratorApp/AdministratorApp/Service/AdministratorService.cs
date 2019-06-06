@@ -12,9 +12,16 @@ using Newtonsoft.Json;
 using System.Net;
 
 
-namespace AdministratorApp.Controller
+namespace AdministratorApp.Service
 {
-    public class AdministratorController : IAdministratorController
+    /// <summary>
+    /// The class that holds all business logic for administrator application
+    /// Contains all methods for all possible requests that can be send to java server
+    /// </summary>
+    /// <remarks>
+    /// creates socket connection, requests for the java server, receiving request from java server
+    /// </remarks>
+    public class AdministratorService : IAdministratorService
     {
         private int Port = 4400;
         IPEndPoint serverAddress;
@@ -23,11 +30,14 @@ namespace AdministratorApp.Controller
         SocketRequest Request=new SocketRequest();
         JsonSerializer JsonSerializer = new JsonSerializer();
 
-        public AdministratorController()
+        public AdministratorService()
         {
            
         }
 
+        /// <summary>
+        /// This method is getting local addres from the client computer
+        /// </summary>
         public static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -41,6 +51,9 @@ namespace AdministratorApp.Controller
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
+        /// <summary>
+        /// This method creates socket connection on chosen port(in our case 4400)
+        /// </summary>
         public void Setup()
         {
             serverAddress = new IPEndPoint(IPAddress.Parse(GetLocalIPAddress()), Port);
@@ -48,6 +61,9 @@ namespace AdministratorApp.Controller
             clientSocket.Connect(serverAddress);
         }
 
+        /// <summary>
+        /// This method is converting ASCII bytes to string
+        /// </summary>
         public string ReadResultset()
         {
              byte[] rcvLenBytes = new byte[4];
@@ -60,6 +76,9 @@ namespace AdministratorApp.Controller
             return rcv;
         }
 
+        /// <summary>
+        /// This method is sending ASCII bytes with the header byte giving the length of the message
+        /// </summary>
         public void SendMessage(string Message)
         {
             int toSendLen = Encoding.ASCII.GetByteCount(Message);
@@ -68,12 +87,14 @@ namespace AdministratorApp.Controller
             clientSocket.Send(toSendLenBytes);
             clientSocket.Send(toSendBytes);
         }
-
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns ClientList
+        /// with all orders ordered by order ID
+        /// </summary>
         public OrderList GetOrdersList()
         {
-            //create socket connection
-            Setup();
 
+            Setup();
             //create request
             Request.action = SocketRequest.ACTION.GET_ORDERS;
 
@@ -87,14 +108,19 @@ namespace AdministratorApp.Controller
             string JsonString = ReadResultset();
 
             OrderList obj = new OrderList();
-            
+            clientSocket.NoDelay=true;
             //deseriliasing 
             obj = JsonConvert.DeserializeObject<OrderList>(JsonString);
 
+          
             clientSocket.Close();
 
             return obj;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns ClientList
+        /// with all assigned orders
+        /// </summary>
         public OrderList GetAssignedOrders()
         {
             //socket connection
@@ -113,6 +139,10 @@ namespace AdministratorApp.Controller
 
             return obj;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns OrderList
+        /// with all unassigned orders
+        /// </summary>
         public OrderList GetUnassignedOrders()
         {
             //socket connection
@@ -131,6 +161,10 @@ namespace AdministratorApp.Controller
 
             return obj;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns ClientList
+        /// with all clients
+        /// </summary>
         public ClientList GetClients()
         {
             //socket connection
@@ -147,7 +181,10 @@ namespace AdministratorApp.Controller
             clientSocket.Close();
             return obj;
         }
-
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns AbstractClient
+        /// object based on provided ID of the client
+        /// </summary>
         public AbstractClient GetClientById(string Id)
         {
             //socket connection
@@ -169,6 +206,10 @@ namespace AdministratorApp.Controller
 
             return client;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns Order
+        /// object based on provided ID of the order
+        /// </summary>
         public Order GetOrderById(string Id)
         {
             //socket connection
@@ -189,6 +230,10 @@ namespace AdministratorApp.Controller
 
             return order;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns ClientList
+        /// with all contractors
+        /// </summary>
         public ClientList GetContractors()
         {
             //socket connection
@@ -205,6 +250,10 @@ namespace AdministratorApp.Controller
             clientSocket.Close();
             return obj;
         }
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns ClientList
+        /// with all customers
+        /// </summary>
         public ClientList GetCustomers()
         {
             //socket connection
@@ -221,7 +270,9 @@ namespace AdministratorApp.Controller
             clientSocket.Close();
             return obj;
         }
-
+        /// <summary>
+        /// sets UPDATE_ORDER action, send it to java server and waiting for response if request was succesfully executed
+        /// </summary>
         public Boolean UpdateOrder(Order order) {
             //socket connection
             Setup();
@@ -237,7 +288,9 @@ namespace AdministratorApp.Controller
             clientSocket.Close();
             return response;
         }
-
+        /// <summary>
+        /// sets DELETE_ORDER action, send it to java server and waiting for response if request was succesfully executed
+        /// </summary>
         public Boolean DeleteOrder(Order order) {
             //socket connection
             Setup();
@@ -253,7 +306,9 @@ namespace AdministratorApp.Controller
             clientSocket.Close();
             return response;
         }
-
+        /// <summary>
+        /// sets ADD_CLIENT action, send it to java server and waiting for response if request was succesfully executed
+        /// </summary>
         public Boolean AddClient(AbstractClient client)
         {
             //socket connection
@@ -272,6 +327,9 @@ namespace AdministratorApp.Controller
             
         }
 
+        /// <summary>
+        /// sets UPDATE_CLIENT action, send it to java server and waiting for response if request was succesfully executed
+        /// </summary>
         public Boolean UpdateClient(AbstractClient client)
         {
             //socket connection
@@ -289,6 +347,9 @@ namespace AdministratorApp.Controller
             return response;
         }
 
+        /// <summary>
+        /// sets DELETE_CLIENT action, send it to java server and waiting for response if request was succesfully executed
+        /// </summary>
         public Boolean DeleteClient(AbstractClient client)
         {
             //socket connection
@@ -306,6 +367,10 @@ namespace AdministratorApp.Controller
             return response;
         }
 
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns OrderList
+        /// with orders ordered by status
+        /// </summary>
         public OrderList GetOrdersByStatus()
         {
             Setup();
@@ -332,6 +397,11 @@ namespace AdministratorApp.Controller
             return obj;
         }
 
+
+        /// <summary>
+        /// sets action, send it to java server and receive object, deserialize it, returns OrderList
+        /// with orders ordered by deadline
+        /// </summary>
         public OrderList GetAllOrdersOrderByDeadline()
         {
             Setup();

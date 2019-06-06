@@ -9,17 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Controller;
+using AdministratorApp.Service;
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class responsible for creating message dialog box for viewing all order information and for editing an order
+    /// </summary>
+    /// <remarks>
+    /// Class can sets hint for the fields, can set and get information from fields,
+    /// reacting on user interaction with the button
+    /// </remarks>
     public partial class OrderViewForm : Form
     {
-        private IAdministratorController administratorService = new AdministratorController();
+        private IAdministratorService administratorService = new AdministratorService();
         private string orderID = "0";
         public OrderViewForm()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Getters and setters for the fields
+        /// </summary>
         #region getters, setters
 
         public void setOrderID(string id)
@@ -137,13 +147,15 @@ namespace AdministratorApp
         }
         #endregion
 
-   
 
+        /// <summary>
+        /// Setting hints for the fields
+        /// </summary>
         #region hints
 
-       
 
-             
+
+
         private void street_Enter(object sender, EventArgs e)
         {
             if (street.Text == "Street")
@@ -227,6 +239,9 @@ namespace AdministratorApp
 
         #endregion
 
+        /// <summary>
+        /// Action listener for the clicking on the button
+        /// </summary>
         private void saveChanges_Click(object sender, EventArgs e)
         {
             if (city.Text.Equals("") || state.Text.Equals("") || street.Text.Equals("")

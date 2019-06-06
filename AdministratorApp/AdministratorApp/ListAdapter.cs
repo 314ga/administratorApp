@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class converts OrderList and ClientList to the List of the string[] objects
+    /// </summary>
+    /// <remarks>
+    /// This class can convert OrderList  and ClientList to the List of the string[] objects
+    /// </remarks>
     public class ListAdapter
     {
         

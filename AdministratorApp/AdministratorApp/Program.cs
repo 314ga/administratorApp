@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdministratorApp.Model;
-using AdministratorApp.Controller;
+using AdministratorApp.Service;
 
 namespace AdministratorApp
 {

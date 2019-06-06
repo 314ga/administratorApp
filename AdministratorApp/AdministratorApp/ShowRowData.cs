@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class creates dialog window for viewing all information about the client and order
+    /// </summary>
     public partial class ShowRowData : Form
     {
         public ShowRowData()
@@ -32,9 +35,5 @@ namespace AdministratorApp
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

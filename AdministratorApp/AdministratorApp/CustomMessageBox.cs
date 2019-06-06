@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace AdministratorApp
 {
+    /// <summary>
+    /// The class for the creating custom message box
+    /// The class contains method for setting and showing message dialog
+    /// </summary>
+    /// <remarks>
+    /// Class can add text, icon, caption and display it on the message dialog
+    /// </remarks>
     public static class CustomMessageBox
     {
         public static DialogResult ShowMessage(string message, string caption, MessageBoxButtons button, int iconNumber)
